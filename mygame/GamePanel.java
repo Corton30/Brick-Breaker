@@ -8,21 +8,25 @@ import java.awt.Color;
 
 public class GamePanel extends JPanel {
     private Paddle paddle;
+    private Ball ball;
 
     public GamePanel() {
         paddle = new Paddle(350, 500, 100, 10);
+        ball = new Ball(400, 250, 10);
+
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
-                if (key == KeyEvent.VK_A) {
+                if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
                     paddle.moveLeft();
-                    repaint();
-                } else if (key == KeyEvent.VK_D) {
+                } else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
                     paddle.moveRight();
-                    repaint();
                 }
+
+//                ball.update();
+                repaint();
             }
         });
     }
@@ -31,5 +35,6 @@ public class GamePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         paddle.draw(g);
+        ball.draw(g);
     }
 }
