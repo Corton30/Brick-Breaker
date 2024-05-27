@@ -18,7 +18,6 @@ public class Paddle {
         g.setColor(Color.BLACK);
         g.fillRect(x, y, width, height);
     }
-
     //getters and setters
     public int getX() {
         return x;
@@ -53,7 +52,7 @@ public class Paddle {
     }
 
 
-//Methods
+    //Methods
 
     public void moveLeft() {
         setX(-40);
