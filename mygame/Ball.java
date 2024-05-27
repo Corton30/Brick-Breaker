@@ -7,15 +7,15 @@ public class Ball {
     private int x, y, radius;
     private int xDirection = 0; // velocity in x direction
     private int yDirection = 2; // velocity in y direction
-
     private Random random = new Random();
     private boolean isMoving = false;
+    private GamePanel gamePanel;
 
-
-    public Ball(int x, int y, int radius) {
+    public Ball(int x, int y, int radius, GamePanel gamePanel) {
         this.x = x;
         this.y = y;
         this.radius = radius;
+        this.gamePanel = gamePanel;
     }
 
     //getters and setters
@@ -55,9 +55,13 @@ public class Ball {
         if (y <= 0) {
             yDirection = -yDirection;
         }
+        // Check for collision with bottom wall
+        int windowHeight = frame.getHeight();;
+        if (y + radius >= windowHeight-radius) {
+            yDirection = -yDirection;
+            gamePanel.decrementLives();
+        }
     }
-
-
     public void startMoving() {
         isMoving = true;
     }

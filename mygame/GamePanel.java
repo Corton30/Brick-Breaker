@@ -14,12 +14,13 @@ public class GamePanel extends JPanel {
     private Paddle paddle;
     private Ball ball;
     private List<Brick> bricks;
+    private int lives = 3;
 
     public GamePanel() {
         // Initialize the paddle
         paddle = new Paddle(650, 700, 150, 15);
         // Initialize the ball
-        ball = new Ball(725, 600, 7);
+        ball = new Ball(725, 600, 7,this);
         // Initialize the bricks
         bricks = new ArrayList<>();
         for (int i = 1; i < 14; i++) {
@@ -41,7 +42,7 @@ public class GamePanel extends JPanel {
                     ball.startMoving();
                 }
                 else if (key == KeyEvent.VK_R) {
-                    reset();
+                    resetGame();
                 }
                 repaint();
             }
@@ -67,12 +68,17 @@ public class GamePanel extends JPanel {
         timer.start();
     }
 
-
-    public void reset() {
+    public void decrementLives() {
+        lives--;
+        if (lives <= 0) {
+            // Stop the game
+        }
+    }
+    public void resetGame() {
         // Reinitialize the paddle
         paddle = new Paddle(650, 700, 150, 15);
         // Reinitialize the ball
-        ball = new Ball(725, 600, 7);
+        ball = new Ball(725, 600, 7, this);
         // Reinitialize the bricks
         bricks = new ArrayList<>();
         for (int i = 1; i < 14; i++) {
@@ -80,6 +86,7 @@ public class GamePanel extends JPanel {
                 bricks.add(new Brick(i * 100, j * 50, 80, 30));
             }
         }
+
     }
 
     @Override
@@ -90,5 +97,8 @@ public class GamePanel extends JPanel {
         for (Brick brick : bricks) {
             brick.draw(g);
         }
+        // Display  lives
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString("Lives: " + lives, 10, 50);
     }
 }
