@@ -23,7 +23,11 @@ public class Brick {
     }
 
     public boolean isHit(Ball ball) {
-        if (!isHit && ball.getX() >= x && ball.getX() <= x + width && ball.getY() >= y && ball.getY() <= y + height) {
+        if (!isHit &&
+                ball.getX() + ball.getRadius() >= x &&
+                ball.getX() - ball.getRadius() <= x + width &&
+                ball.getY() + ball.getRadius() >= y &&
+                ball.getY() - ball.getRadius() <= y + height){
             isHit = true;
             return true;
         }

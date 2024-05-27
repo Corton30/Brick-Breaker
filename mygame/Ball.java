@@ -41,12 +41,9 @@ public class Ball {
         }
 
 
-        // Get the width of the game window
-        Frame frame = (Frame) Frame.getFrames()[0];
-        int windowWidth = frame.getWidth();
 
         // Check for collision with left or right wall
-        if (x - radius <= 0 || x + radius >= windowWidth ) {
+        if (x - radius <= 0 || x + radius >= 1440 ) {
             xDirection = -xDirection;
         }
 
@@ -55,8 +52,7 @@ public class Ball {
             yDirection = -yDirection;
         }
         // Check for collision with bottom wall
-        int windowHeight = frame.getHeight();
-        if (y + radius >= windowHeight-radius) {
+        if (y + radius >= 900-radius) {
             yDirection = -yDirection;
             gamePanel.decrementLives();
         }

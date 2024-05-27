@@ -27,14 +27,16 @@ public class GamePanel extends JPanel {
         // Initialize the ball
         ball = new Ball(725, 600, 7,this);
         // Initialize the bricks
-/*        bricks = new ArrayList<>();
+        bricks = new ArrayList<>();
         for (int i = 1; i < 14; i++) {
             for (int j = 2; j < 8; j++) {
                 bricks.add(new Brick(i * 100, j * 50, 80, 30));
             }
-        }*/
+        }
+/*
         bricks = new ArrayList<>();
         bricks.add(new Brick( 100, 200, 1200, 20));
+*/
 
 
         setFocusable(true);
@@ -102,7 +104,7 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println("paintComponent is called");
+        System.out.println(getWidth());
         if (lives > 0) {
             if (!allBricksHit()) {
                 paddle.draw(g);
