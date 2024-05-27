@@ -64,9 +64,8 @@ public class GamePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 ball.update();
                 // Check for collision with paddle
-//                if (new Rectangle(ball.getX(), ball.getY(), ball.getRadius() * 2, ball.getRadius() * 2).intersects(new Rectangle(paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight()))) {
-//                    ball.reverseDirection();
-//                }
+                paddle.BallHit(ball);
+
                 // Check for collision with bricks
                 for (Brick brick : bricks) {
                     if (brick.isHit(ball)) {
