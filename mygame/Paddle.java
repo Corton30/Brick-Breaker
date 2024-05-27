@@ -52,11 +52,14 @@ public class Paddle {
         this.height = height;
     }
 
+
+//Methods
+
     public void moveLeft() {
-        setX(-10);
+        setX(-40);
     }
 
     public void moveRight() {
-        setX(10);
+        setX(40);
     }
 }
