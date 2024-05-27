@@ -93,13 +93,19 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        paddle.draw(g);
-        ball.draw(g);
-        for (Brick brick : bricks) {
-            brick.draw(g);
+        if (lives > 0) {
+            paddle.draw(g);
+            ball.draw(g);
+            for (Brick brick : bricks) {
+                brick.draw(g);
+            }
+            // Display lives
+            g.setFont(new Font("Arial", Font.BOLD, 20));
+            g.drawString("Lives: " + lives, 10, 50);
+        } else {
+            // Display losing screen
+            g.setFont(new Font("Arial", Font.BOLD, 50));
+            g.drawString("Game Over", getWidth() / 2 - 100, getHeight() / 2);
         }
-        // Display  lives
-        g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("Lives: " + lives, 10, 50);
     }
 }
