@@ -4,49 +4,14 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Rectangle;
 
-public class Paddle {
-    private int x, y, width, height;
+public class Paddle extends Rectangle {
 
+    private int speed = 40;
     public Paddle(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        super(x, y, width, height);
     }
 
     //getters and setters
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x += x ;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
 
     //Methods
     public void draw(Graphics g) {
@@ -54,9 +19,9 @@ public class Paddle {
         g.fillRect(x, y, width, height);
     }
     public void moveLeft() {
-        setX(-40);
+        this.x  -= speed;
     }
     public void moveRight() {
-        setX(40);
+        this.x  += speed;
     }
 }

@@ -2,16 +2,13 @@ package mygame;
 
 import java.awt.*;
 
-public class Brick {
-    private int x, y, width, height;
+public class Brick extends Rectangle {
+
     private boolean isHit;
 
 
     public Brick(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        super(x, y, width, height);
         this.isHit = false;
     }
 
