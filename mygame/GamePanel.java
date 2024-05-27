@@ -10,11 +10,16 @@ import javax.swing.Timer;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
+
 public class GamePanel extends JPanel {
     private Paddle paddle;
     private Ball ball;
     private List<Brick> bricks;
     private int lives = 3;
+
 
     public GamePanel() {
         // Initialize the paddle
@@ -37,10 +42,10 @@ public class GamePanel extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
-                if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+                if ((key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT)&& paddle.getX() > 0){
                     paddle.moveLeft();
                     ball.startMoving();
-                } else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+                } else if ((key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT)&& paddle.getX()+paddle.getWidth()<=1440) {
                     paddle.moveRight();
                     ball.startMoving();
                 }
@@ -76,9 +81,6 @@ public class GamePanel extends JPanel {
         lives--;
         resetPaddle();
         resetBall();
-        if (lives <= 0) {
-            // Stop the game
-        }
     }
     public void resetPaddle() {
         // Reinitialize the paddle
@@ -100,6 +102,7 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        System.out.println("paintComponent is called");
         if (lives > 0) {
             if (!allBricksHit()) {
                 paddle.draw(g);
