@@ -13,17 +13,28 @@ public class Ball {
         this.y = y;
         this.radius = radius;
     }
+
     public void draw(Graphics g) {
         g.setColor(Color.BLUE);
         g.fillOval(x - radius, y - radius, 2 * radius, 2 * radius);
     }
+
     public void update() {
         if (isMoving) {
             x += dx;
             y += dy;
         }
     }
+
     public void startMoving() {
         isMoving = true;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

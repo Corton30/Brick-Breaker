@@ -8,15 +8,26 @@ import javax.swing.*;
 import java.awt.Graphics;
 import javax.swing.Timer;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GamePanel extends JPanel {
     private Paddle paddle;
     private Ball ball;
+    private List<Brick> bricks;
 
     public GamePanel() {
+        // Initialize the paddle
         paddle = new Paddle(650, 700, 150, 15);
+        // Initialize the ball
         ball = new Ball(725, 600, 7);
-
+        // Initialize the bricks
+        bricks = new ArrayList<>();
+        for (int i = 1; i < 14; i++) {
+            for (int j = 2; j < 8; j++) {
+                bricks.add(new Brick(i * 100, j * 50, 80, 30));
+            }
+        }
 
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
@@ -50,5 +61,8 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         paddle.draw(g);
         ball.draw(g);
+        for (Brick brick : bricks) {
+            brick.draw(g);
+        }
     }
 }
