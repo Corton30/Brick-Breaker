@@ -70,6 +70,7 @@ public class GamePanel extends JPanel {
 
     public void decrementLives() {
         lives--;
+        resetGame();
         if (lives <= 0) {
             // Stop the game
         }
