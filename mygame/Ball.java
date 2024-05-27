@@ -17,7 +17,6 @@ public class Ball {
         this.radius = radius;
         this.gamePanel = gamePanel;
     }
-
     //getters and setters
     public int getX() {
         return x;
@@ -56,7 +55,7 @@ public class Ball {
             yDirection = -yDirection;
         }
         // Check for collision with bottom wall
-        int windowHeight = frame.getHeight();;
+        int windowHeight = frame.getHeight();
         if (y + radius >= windowHeight-radius) {
             yDirection = -yDirection;
             gamePanel.decrementLives();

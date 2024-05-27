@@ -14,10 +14,6 @@ public class Paddle {
         this.height = height;
     }
 
-    public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRect(x, y, width, height);
-    }
     //getters and setters
     public int getX() {
         return x;
@@ -53,11 +49,13 @@ public class Paddle {
 
 
     //Methods
-
+    public void draw(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.fillRect(x, y, width, height);
+    }
     public void moveLeft() {
         setX(-40);
     }
-
     public void moveRight() {
         setX(40);
     }
