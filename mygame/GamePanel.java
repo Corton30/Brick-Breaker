@@ -22,12 +22,15 @@ public class GamePanel extends JPanel {
         // Initialize the ball
         ball = new Ball(725, 600, 7,this);
         // Initialize the bricks
-        bricks = new ArrayList<>();
+/*        bricks = new ArrayList<>();
         for (int i = 1; i < 14; i++) {
             for (int j = 2; j < 8; j++) {
                 bricks.add(new Brick(i * 100, j * 50, 80, 30));
             }
-        }
+        }*/
+        bricks = new ArrayList<>();
+        bricks.add(new Brick( 100, 200, 1200, 20));
+
 
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
@@ -86,19 +89,32 @@ public class GamePanel extends JPanel {
         ball = new Ball(725, 600, 7, this);
 
     }
-
+    public boolean allBricksHit() {
+        for (Brick brick : bricks) {
+            if (!brick.isAlreadyHit()) {
+                return false;
+            }
+        }
+        return true;
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (lives > 0) {
-            paddle.draw(g);
-            ball.draw(g);
-            for (Brick brick : bricks) {
-                brick.draw(g);
+            if (!allBricksHit()) {
+                paddle.draw(g);
+                ball.draw(g);
+                for (Brick brick : bricks) {
+                    brick.draw(g);
+                }
+                // Display lives
+                g.setFont(new Font("Arial", Font.BOLD, 20));
+                g.drawString("Lives: " + lives, 10, 50);
+            } else {
+                // Display winning screen
+                g.setFont(new Font("Arial", Font.BOLD, 50));
+                g.drawString("You Win!", getWidth() / 2 - 100, getHeight() / 2);
             }
-            // Display lives
-            g.setFont(new Font("Arial", Font.BOLD, 20));
-            g.drawString("Lives: " + lives, 10, 50);
         } else {
             // Display losing screen
             g.setFont(new Font("Arial", Font.BOLD, 50));

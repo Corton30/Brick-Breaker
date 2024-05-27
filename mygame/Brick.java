@@ -6,6 +6,7 @@ public class Brick {
     private int x, y, width, height;
     private boolean isHit;
 
+
     public Brick(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -27,5 +28,11 @@ public class Brick {
             return true;
         }
         return false;
+
     }
+
+    public boolean isAlreadyHit() {
+        return isHit;
+    }
+
 }
