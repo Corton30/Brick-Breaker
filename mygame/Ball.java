@@ -4,8 +4,9 @@ import java.awt.*;
 
 public class Ball {
     private int x, y, radius;
-    private int dx = 0; // velocity in x direction
-    private int dy = 2; // velocity in y direction
+    private int xDirection = 0; // velocity in x direction
+    private int yDirection = 2; // velocity in y direction
+
     private boolean isMoving = false;
 
     public Ball(int x, int y, int radius) {
@@ -21,20 +22,27 @@ public class Ball {
 
     public void update() {
         if (isMoving) {
-            x += dx;
-            y += dy;
+            x += xDirection;
+            y += yDirection;
         }
     }
 
     public void startMoving() {
         isMoving = true;
     }
-
+    public void reverseYDirection() {
+        yDirection = -yDirection;
+        xDirection = -xDirection;
+    }
     public int getX() {
         return x;
     }
 
     public int getY() {
         return y;
+    }
+
+    public int getRadius() {
+        return radius;
     }
 }

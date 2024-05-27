@@ -19,7 +19,7 @@ public class Paddle {
         g.fillRect(x, y, width, height);
     }
 
- //getters and setters
+    //getters and setters
     public int getX() {
         return x;
     }
@@ -28,6 +28,13 @@ public class Paddle {
         this.x += x ;
     }
 
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 
     public int getWidth() {
         return width;
@@ -37,12 +44,19 @@ public class Paddle {
         this.width = width;
     }
 
+    public int getHeight() {
+        return height;
+    }
 
-public void moveLeft() {
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void moveLeft() {
         setX(-10);
     }
 
-public void moveRight() {
+    public void moveRight() {
         setX(10);
     }
 }

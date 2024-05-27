@@ -1,13 +1,12 @@
 package mygame;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
-import java.awt.Graphics;
 import javax.swing.Timer;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,10 +45,20 @@ public class GamePanel extends JPanel {
                 repaint();
             }
         });
-        Timer timer = new Timer(30, new ActionListener() {
+        Timer timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ball.update();
+                // Check for collision with paddle
+                if (new Rectangle(ball.getX(), ball.getY(), ball.getRadius() * 2, ball.getRadius() * 2).intersects(new Rectangle(paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight()))) {
+                    ball.reverseYDirection();
+                }
+                // Check for collision with bricks
+                for (Brick brick : bricks) {
+                    if (brick.isHit(ball)) {
+                        ball.reverseYDirection();
+                    }
+                }
                 repaint();
             }
         });
