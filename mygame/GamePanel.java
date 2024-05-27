@@ -11,8 +11,9 @@ public class GamePanel extends JPanel {
     private Ball ball;
 
     public GamePanel() {
-        paddle = new Paddle(350, 500, 100, 10);
-        ball = new Ball(400, 250, 10);
+        paddle = new Paddle(650, 700, 150, 15);
+        ball = new Ball(725, 600, 7);
+
 
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
