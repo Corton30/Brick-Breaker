@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Ball {
     private int x, y, radius;
-    private int dx = 2; // velocity in x direction
+    private int dx = 0; // velocity in x direction
     private int dy = 2; // velocity in y direction
     private boolean isMoving = false;
 
