@@ -40,6 +40,9 @@ public class GamePanel extends JPanel {
                     paddle.moveRight();
                     ball.startMoving();
                 }
+                else if (key == KeyEvent.VK_R) {
+                    reset();
+                }
                 repaint();
             }
         });
@@ -62,6 +65,21 @@ public class GamePanel extends JPanel {
             }
         });
         timer.start();
+    }
+
+
+    public void reset() {
+        // Reinitialize the paddle
+        paddle = new Paddle(650, 700, 150, 15);
+        // Reinitialize the ball
+        ball = new Ball(725, 600, 7);
+        // Reinitialize the bricks
+        bricks = new ArrayList<>();
+        for (int i = 1; i < 14; i++) {
+            for (int j = 2; j < 8; j++) {
+                bricks.add(new Brick(i * 100, j * 50, 80, 30));
+            }
+        }
     }
 
     @Override
