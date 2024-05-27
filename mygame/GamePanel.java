@@ -42,7 +42,8 @@ public class GamePanel extends JPanel {
                     ball.startMoving();
                 }
                 else if (key == KeyEvent.VK_R) {
-                    resetGame();
+                    resetPaddle();
+                    resetBall();
                 }
                 repaint();
             }
@@ -70,23 +71,19 @@ public class GamePanel extends JPanel {
 
     public void decrementLives() {
         lives--;
-        resetGame();
+        resetPaddle();
+        resetBall();
         if (lives <= 0) {
             // Stop the game
         }
     }
-    public void resetGame() {
+    public void resetPaddle() {
         // Reinitialize the paddle
         paddle = new Paddle(650, 700, 150, 15);
+    }
+    public void resetBall(){
         // Reinitialize the ball
         ball = new Ball(725, 600, 7, this);
-        // Reinitialize the bricks
-        bricks = new ArrayList<>();
-        for (int i = 1; i < 14; i++) {
-            for (int j = 2; j < 8; j++) {
-                bricks.add(new Brick(i * 100, j * 50, 80, 30));
-            }
-        }
 
     }
 
