@@ -1,9 +1,12 @@
 package mygame;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.Graphics;
+import javax.swing.Timer;
 import java.awt.Color;
 
 public class GamePanel extends JPanel {
@@ -26,10 +29,18 @@ public class GamePanel extends JPanel {
                     paddle.moveRight();
                 }
 
-//                ball.update();
+
                 repaint();
             }
         });
+        Timer timer = new Timer(30, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ball.update();
+                repaint();
+            }
+        });
+        timer.start();
     }
 
     @Override
