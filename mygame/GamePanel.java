@@ -25,8 +25,10 @@ public class GamePanel extends JPanel {
                 int key = e.getKeyCode();
                 if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
                     paddle.moveLeft();
+                    ball.startMoving();
                 } else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
                     paddle.moveRight();
+                    ball.startMoving();
                 }
 
 
