@@ -66,8 +66,7 @@ public class Ball {
     }
     public void reverseDirection() {
         yDirection = -yDirection;
-
-        xDirection = random.nextInt(5) - 2;
+        xDirection = random.nextInt(2) == 0 ? -1 : 1;
     }
 
 }
