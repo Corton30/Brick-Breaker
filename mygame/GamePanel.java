@@ -90,6 +90,7 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        System.out.println(getWidth());
         if (lives > 0) {
             if (!allBricksHit()) {
                 paddle.draw(g);
