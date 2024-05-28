@@ -21,14 +21,17 @@ public class Ball {
     public int getX() {
         return x;
     }
-
     public int getY() {
         return y;
     }
-
     public int getRadius() {
         return radius;
     }
+    public void setXDirection(int xDirection) {
+        this.xDirection = xDirection;
+    }
+
+
     //Methods
     public void draw(Graphics g) {
         g.setColor(Color.BLUE);

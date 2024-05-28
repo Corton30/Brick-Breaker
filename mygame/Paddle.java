@@ -29,6 +29,27 @@ public class Paddle extends Rectangle {
                 ball.getX() - ball.getRadius() <= x + width &&
                 ball.getY() + ball.getRadius() >= y &&
                 ball.getY() - ball.getRadius() <= y + height){
+            int paddleSegments = 5; // Number of segments to divide the paddle into
+            int segmentWidth = width / paddleSegments; // Width of each segment
+            int hitSegment = (ball.getX() - x) / segmentWidth; // Which segment the ball hit
+
+            switch (hitSegment) {
+                case 0: // Far left
+                    ball.setXDirection(-2);
+                    break;
+                case 1: // Left
+                    ball.setXDirection(-1);
+                    break;
+                case 2: // Middle
+                    ball.setXDirection(0);
+                    break;
+                case 3: // Right
+                    ball.setXDirection(1);
+                    break;
+                case 4: // Far right
+                    ball.setXDirection(2);
+                    break;
+            }
             ball.reverseDirection();
         }
     }
