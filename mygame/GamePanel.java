@@ -43,12 +43,15 @@ public class GamePanel extends JPanel {
     public void setBricks(List<Brick> bricks) {
         this.bricks = bricks;
     }
+    public  List<Brick> getBricks() {
+        return bricks;
+    }
 
     public GamePanel() {
         // Initialize the paddle
         this.paddle = new Paddle(650, 700, 150, 15);
         // Initialize the ball
-        this.ball = new Ball(700, 600, 10, this);
+        this.ball = new Ball(725, 600, 7, this);
         // Initialize the map generator
         mapGenerator = new MapGenerator();
         // Start with level 1
@@ -60,20 +63,10 @@ public class GamePanel extends JPanel {
         GameKeyAdapter gameKeyAdapter = new GameKeyAdapter(this);
         addKeyListener(gameKeyAdapter);
 
-
         Timer timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ball.update();
-                // Check for collision with paddle
-                paddle.BallHit(ball);
-
-                // Check for collision with bricks
-                for (Brick brick : bricks) {
-                    if (brick.isHit(ball)) {
-                        ball.reverseDirection();
-                    }
-                }
                 repaint();
             }
         });
@@ -97,7 +90,6 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println(getWidth());
         if (lives > 0) {
             if (!allBricksHit()) {
                 paddle.draw(g);
