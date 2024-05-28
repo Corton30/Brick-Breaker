@@ -39,22 +39,26 @@ public class Ball {
             x += xDirection;
             y += yDirection;
         }
+        checkWallCollisions();
+    }
 
 
 
-        // Check for collision with left or right wall
-        if (x - radius <= 0 || x + radius >= 1440 ) {
+    private void checkWallCollisions() {
+        // Collision with left or right walls
+        if (x - radius <= 0 || x + radius >= 1440) {
             xDirection = -xDirection;
         }
 
-        // Check for collision with top wall
-        if (y <= 0) {
+        // Collision with top wall
+        if (y - radius <= 0) {
             yDirection = -yDirection;
         }
-        // Check for collision with bottom wall
-        if (y + radius >= 900-radius) {
+
+        // Collision with bottom wall (consider game over or life decrement scenario)
+        if (y + radius >= 900 - radius) {
             yDirection = -yDirection;
-            gamePanel.decrementLives();
+            gamePanel.decrementLives(); // Assuming you have a method to decrement lives
         }
     }
     public void startMoving() {

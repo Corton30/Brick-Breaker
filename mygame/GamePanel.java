@@ -3,8 +3,6 @@ package mygame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import javax.swing.*;
 import javax.swing.Timer;
 import java.util.ArrayList;
@@ -48,7 +46,8 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
         // Initialize the paddle
-        this.paddle = new Paddle(650, 700, 150, 15);        // Initialize the ball
+        this.paddle = new Paddle(650, 700, 150, 15);
+        // Initialize the ball
         this.ball = new Ball(700, 600, 10, this);
         // Initialize the map generator
         mapGenerator = new MapGenerator();
@@ -57,58 +56,9 @@ public class GamePanel extends JPanel {
         bricks = mapGenerator.generateMap(currentLevel);
         setFocusable(true);
 
-
         // Create a new instance of GameKeyAdapter and add it as a key listener
         GameKeyAdapter gameKeyAdapter = new GameKeyAdapter(this);
         addKeyListener(gameKeyAdapter);
-
-
-            /*@Override
-            public void keyPressed(KeyEvent e) {
-                int key = e.getKeyCode();
-                if ((key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT)&& paddle.getX() > 0){
-                    paddle.moveLeft();
-                    ball.startMoving();
-                } else if ((key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT)&& paddle.getX()+paddle.getWidth()<=1440) {
-                    paddle.moveRight();
-                    ball.startMoving();
-                }
-                else if (key == KeyEvent.VK_R) {
-                    paddle.resetPaddle();
-                    ball.resetBall();
-                }
-                else if (key == KeyEvent.VK_1) {
-                    currentLevel = 1;
-                    bricks = mapGenerator.generateMap(currentLevel);
-                    paddle.resetPaddle();
-                    ball.resetBall();
-                }
-                else if (key == KeyEvent.VK_2) {
-                    currentLevel = 2;
-                    bricks = mapGenerator.generateMap(currentLevel);
-                    paddle.resetPaddle();
-                    ball.resetBall();
-                }
-                else if (key == KeyEvent.VK_3) {
-                    currentLevel = 3;
-                    bricks = mapGenerator.generateMap(currentLevel);
-                    paddle.resetPaddle();
-                    ball.resetBall();
-                }
-                else if (key == KeyEvent.VK_4) {
-                    currentLevel = 4;
-                    bricks = mapGenerator.generateMap(currentLevel);
-                    paddle.resetPaddle();
-                    ball.resetBall();
-                }
-                else if (key == KeyEvent.VK_5) {
-                    currentLevel = 5;
-                    bricks = mapGenerator.generateMap(currentLevel);
-                    paddle.resetPaddle();
-                    ball.resetBall();
-                }
-                repaint();
-            }*/
 
 
         Timer timer = new Timer(10, new ActionListener() {
