@@ -17,6 +17,8 @@ import java.util.List;
 public class GamePanel extends JPanel {
     private Paddle paddle;
     private Ball ball;
+    private MapGenerator mapGenerator;
+    private int currentLevel;
     private List<Brick> bricks;
     private int lives = 3;
 
@@ -26,17 +28,13 @@ public class GamePanel extends JPanel {
         paddle = new Paddle(650, 700, 150, 15);
         // Initialize the ball
         ball = new Ball(725, 600, 7,this);
-        // Initialize the bricks
-        bricks = new ArrayList<>();
-        for (int i = 1; i < 14; i++) {
-            for (int j = 2; j < 8; j++) {
-                bricks.add(new Brick(i * 100, j * 50, 80, 30));
-            }
-        }
-/*
-        bricks = new ArrayList<>();
-        bricks.add(new Brick( 100, 200, 1200, 20));
-*/
+        // Initialize the map generator
+        mapGenerator = new MapGenerator();
+        // Start with level 1
+
+        currentLevel = 1;
+        bricks = mapGenerator.generateMap(currentLevel);
+
 
 
         setFocusable(true);
@@ -52,6 +50,36 @@ public class GamePanel extends JPanel {
                     ball.startMoving();
                 }
                 else if (key == KeyEvent.VK_R) {
+                    resetPaddle();
+                    resetBall();
+                }
+                else if (key == KeyEvent.VK_1) {
+                    currentLevel = 1;
+                    bricks = mapGenerator.generateMap(currentLevel);
+                    resetPaddle();
+                    resetBall();
+                }
+                else if (key == KeyEvent.VK_2) {
+                    currentLevel = 2;
+                    bricks = mapGenerator.generateMap(currentLevel);
+                    resetPaddle();
+                    resetBall();
+                }
+                else if (key == KeyEvent.VK_3) {
+                    currentLevel = 3;
+                    bricks = mapGenerator.generateMap(currentLevel);
+                    resetPaddle();
+                    resetBall();
+                }
+                else if (key == KeyEvent.VK_4) {
+                    currentLevel = 4;
+                    bricks = mapGenerator.generateMap(currentLevel);
+                    resetPaddle();
+                    resetBall();
+                }
+                else if (key == KeyEvent.VK_5) {
+                    currentLevel = 5;
+                    bricks = mapGenerator.generateMap(currentLevel);
                     resetPaddle();
                     resetBall();
                 }
