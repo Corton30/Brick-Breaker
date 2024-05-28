@@ -34,15 +34,15 @@ public class MapGenerator {
 
             case 4: // Random bricks
                 for (int i = 0; i < 50; i++) {
-                    int x = random.nextInt(14) * 100;
-                    int y = random.nextInt(6) * 50 + 200;
+                    int x = random.nextInt(13) * 100 +70;
+                    int y = random.nextInt(7) * 50 + 100;
                     bricks.add(new Brick(x, y, 80, 30));
                 }
                 break;
 
             case 5: // Spiral pattern
-            int centerX = 720; // Center of the screen
-            int centerY = 450;
+            int centerX = 700; // Center of the screen
+            int centerY = 250;
             int brickWidth = 80;
             int brickHeight = 30;
             int spiralSize = 1; // The size of the spiral (number of bricks on one side)
