@@ -12,8 +12,6 @@ import java.util.List;
 
 
 
-
-
 public class GamePanel extends JPanel {
     private Paddle paddle;
     private Ball ball;
@@ -23,23 +21,49 @@ public class GamePanel extends JPanel {
     private int lives = 3;
 
 
+    public Paddle getPaddle() {
+        return paddle;
+    }
+    public Ball getBall() {
+        return ball;
+    }
+    public void resetBall() {
+        ball.resetBall();
+    }
+    public void resetPaddle() {
+        paddle.resetPaddle();
+    }
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
+    }
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+    public MapGenerator getMapGenerator() {
+        return mapGenerator;
+    }
+    public void setBricks(List<Brick> bricks) {
+        this.bricks = bricks;
+    }
+
     public GamePanel() {
         // Initialize the paddle
-        paddle = new Paddle(650, 700, 150, 15);
-        // Initialize the ball
-        ball = new Ball(725, 600, 7,this);
+        this.paddle = new Paddle(650, 700, 150, 15);        // Initialize the ball
+        this.ball = new Ball(700, 600, 10, this);
         // Initialize the map generator
         mapGenerator = new MapGenerator();
         // Start with level 1
-
         currentLevel = 1;
         bricks = mapGenerator.generateMap(currentLevel);
-
-
-
         setFocusable(true);
-        addKeyListener(new KeyAdapter() {
-            @Override
+
+
+        // Create a new instance of GameKeyAdapter and add it as a key listener
+        GameKeyAdapter gameKeyAdapter = new GameKeyAdapter(this);
+        addKeyListener(gameKeyAdapter);
+
+
+            /*@Override
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
                 if ((key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT)&& paddle.getX() > 0){
@@ -50,42 +74,42 @@ public class GamePanel extends JPanel {
                     ball.startMoving();
                 }
                 else if (key == KeyEvent.VK_R) {
-                    resetPaddle();
-                    resetBall();
+                    paddle.resetPaddle();
+                    ball.resetBall();
                 }
                 else if (key == KeyEvent.VK_1) {
                     currentLevel = 1;
                     bricks = mapGenerator.generateMap(currentLevel);
-                    resetPaddle();
-                    resetBall();
+                    paddle.resetPaddle();
+                    ball.resetBall();
                 }
                 else if (key == KeyEvent.VK_2) {
                     currentLevel = 2;
                     bricks = mapGenerator.generateMap(currentLevel);
-                    resetPaddle();
-                    resetBall();
+                    paddle.resetPaddle();
+                    ball.resetBall();
                 }
                 else if (key == KeyEvent.VK_3) {
                     currentLevel = 3;
                     bricks = mapGenerator.generateMap(currentLevel);
-                    resetPaddle();
-                    resetBall();
+                    paddle.resetPaddle();
+                    ball.resetBall();
                 }
                 else if (key == KeyEvent.VK_4) {
                     currentLevel = 4;
                     bricks = mapGenerator.generateMap(currentLevel);
-                    resetPaddle();
-                    resetBall();
+                    paddle.resetPaddle();
+                    ball.resetBall();
                 }
                 else if (key == KeyEvent.VK_5) {
                     currentLevel = 5;
                     bricks = mapGenerator.generateMap(currentLevel);
-                    resetPaddle();
-                    resetBall();
+                    paddle.resetPaddle();
+                    ball.resetBall();
                 }
                 repaint();
-            }
-        });
+            }*/
+
 
         Timer timer = new Timer(10, new ActionListener() {
             @Override
@@ -108,18 +132,10 @@ public class GamePanel extends JPanel {
 
     public void decrementLives() {
         lives--;
-        resetPaddle();
-        resetBall();
+        paddle.resetPaddle();
+        ball.resetBall();
     }
-    public void resetPaddle() {
-        // Reinitialize the paddle
-        paddle = new Paddle(650, 700, 150, 15);
-    }
-    public void resetBall(){
-        // Reinitialize the ball
-        ball = new Ball(725, 600, 7, this);
 
-    }
     public boolean allBricksHit() {
         for (Brick brick : bricks) {
             if (!brick.isAlreadyHit()) {

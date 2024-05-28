@@ -65,4 +65,13 @@ public class Ball {
         xDirection = random.nextInt(2) == 0 ? -1 : 1;
     }
 
+    public void resetBall(){
+        // Reinitialize the ball
+        this.x = 725;
+        this.y = 600;
+        this.radius = 7;
+        this.isMoving = false;
+        this.xDirection = 0;
+        this.yDirection = 2;
+    }
 }

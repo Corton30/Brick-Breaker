@@ -36,4 +36,9 @@ public class Paddle extends Rectangle {
     public void moveRight() {
         this.x  += speed;
     }
+
+    public void resetPaddle() {
+        // Reinitialize the paddle
+        this.setRect(650, 700, 150, 15);
+    }
 }
