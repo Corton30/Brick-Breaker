@@ -42,42 +42,16 @@ public class Ball {
             x += xDirection;
             y += yDirection;
         }
-        checkCollisions();
     }
 
-    private void checkCollisions() {
-        // Collision with left or right walls
-        if (x - radius <= 0 || x + radius >= 1440) {
-            xDirection = -xDirection;
-        }
-
-        // Collision with top wall
-        if (y - radius <= 0) {
-            yDirection = -yDirection;
-        }
-
-        // Collision with bottom wall (consider game over or life decrement scenario)
-        if (y + radius >= 900 - radius) {
-            yDirection = -yDirection;
-            gamePanel.decrementLives();
-        }
-
-        // Check for collision with paddle
-        gamePanel.getPaddle().BallHit(gamePanel.getBall());
-
-        // Check for collision with bricks
-        for (Brick brick : gamePanel.getBricks()) {
-            if (brick.isHit(gamePanel.getBall())) {
-                gamePanel.getBall().reverseDirection();
-            }
-        }
-    }
     public void startMoving() {
         isMoving = true;
     }
-    public void reverseDirection() {
+    public void reverseYDirection() {
         yDirection = -yDirection;
-//        xDirection = random.nextInt(2) == 0 ? -1 : 1;
+    }
+    public void reverseXDirection() {
+        xDirection = -xDirection;
     }
     public void resetBall(){
         // Reinitialize the ball

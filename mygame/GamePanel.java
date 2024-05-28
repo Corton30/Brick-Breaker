@@ -17,6 +17,7 @@ public class GamePanel extends JPanel {
     private int currentLevel;
     private List<Brick> bricks;
     private int lives = 3;
+    private Collision collision;
 
 
     public Paddle getPaddle() {
@@ -58,6 +59,8 @@ public class GamePanel extends JPanel {
         currentLevel = 1;
         bricks = mapGenerator.generateMap(currentLevel);
         setFocusable(true);
+        // Initialize the collision detector
+        collision = new Collision(this);
 
         // Create a new instance of GameKeyAdapter and add it as a key listener
         GameKeyAdapter gameKeyAdapter = new GameKeyAdapter(this);
@@ -67,6 +70,8 @@ public class GamePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ball.update();
+                collision.checkCollisions();
+
                 repaint();
             }
         });
