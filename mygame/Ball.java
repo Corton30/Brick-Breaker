@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class Ball {
     private int x, y, radius;
-    private int xDirection = 0; // velocity in x direction
-    private int yDirection = 2; // velocity in y direction
+    private double xDirection = 0; // velocity in x direction
+    private double yDirection = 2; // velocity in y direction
     private Random random = new Random();
     private boolean isMoving = false;
     private GamePanel gamePanel;
@@ -27,7 +27,7 @@ public class Ball {
     public int getRadius() {
         return radius;
     }
-    public void setXDirection(int xDirection) {
+    public void setXDirection(double xDirection) {
         this.xDirection = xDirection;
     }
 
@@ -77,9 +77,8 @@ public class Ball {
     }
     public void reverseDirection() {
         yDirection = -yDirection;
-        xDirection = random.nextInt(2) == 0 ? -1 : 1;
+//        xDirection = random.nextInt(2) == 0 ? -1 : 1;
     }
-
     public void resetBall(){
         // Reinitialize the ball
         this.x = 725;
