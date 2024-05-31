@@ -11,12 +11,14 @@ import java.util.List;
 
 
 public class GamePanel extends JPanel {
+
+    private static final int INITIAL_LIVES = 3;
     private Paddle paddle;
     private Ball ball;
     private MapGenerator mapGenerator;
     private int currentLevel;
     private List<Brick> bricks;
-    private int lives = 3;
+    private int lives = INITIAL_LIVES;
     private Collision collision;
 
 

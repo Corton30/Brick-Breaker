@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 
 public class Paddle extends Rectangle {
 
-    private int speed = 40;
+    private static final int PADDLE_SPEED = 40;
     public Paddle(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
@@ -20,12 +20,12 @@ public class Paddle extends Rectangle {
     }
 
     public void moveLeft() {
-        this.x  -= speed;
+        this.x  -= PADDLE_SPEED;
 
     }
 
     public void moveRight() {
-        this.x  += speed;
+        this.x  += PADDLE_SPEED;
     }
 
     public void resetPaddle() {
