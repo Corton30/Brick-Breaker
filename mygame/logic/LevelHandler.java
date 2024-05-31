@@ -1,7 +1,7 @@
 package mygame.logic;
 
 import mygame.GamePanel;
-import mygame.GUI.MapGenerator;
+import mygame.Maps.MapGenerator;
 import mygame.props.Brick;
 
 import java.util.List;

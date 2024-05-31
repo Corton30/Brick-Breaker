@@ -2,7 +2,7 @@ package mygame;
 
 import mygame.GUI.GameKeyAdapter;
 import mygame.GUI.GameRenderer;
-import mygame.GUI.MapGenerator;
+import mygame.Maps.MapGenerator;
 import mygame.extra.GameState;
 import mygame.logic.Collision;
 import mygame.logic.LevelHandler;
@@ -139,7 +139,7 @@ public class GamePanel extends JPanel {
         lives = INITIAL_LIVES;
         // Regenerate the bricks for the current level
         bricks = mapGenerator.generateMap(currentLevel);
-        // If the game was won and it's not the last level, go to the next level
+        // If the game was won, and it's not the last level, go to the next level
         if (gameState == GameState.GAME_WON && !levelHandler.isLastLevel()) {
             levelHandler.nextLevel();
         } else {
