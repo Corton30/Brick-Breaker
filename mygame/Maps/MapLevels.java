@@ -30,12 +30,13 @@ public class MapLevels {
     }
     public List<Brick> levelThree() {
         List<Brick> bricks = new ArrayList<>();
-        Color brickColor = Color.RED;
+        Color brickColor = Color.ORANGE;
 
         for (int i = 3; i < 11; i++) {
             bricks.add(new Brick(i * 100, 200, 80, 30,brickColor)); // Top part of "A"
             bricks.add(new Brick(i * 100, 500, 80, 30,brickColor)); // Middle part of "A"
         }
+        brickColor = Color.BLACK;
         for (int j = 3; j < 8; j++) {
             bricks.add(new Brick(300, j * 50, 80, 30,brickColor)); // Left leg of "A"
             bricks.add(new Brick(1000, j * 50, 80, 30,brickColor)); // Right leg of "A"
@@ -44,10 +45,18 @@ public class MapLevels {
     }
     public List<Brick> levelFour() {
         List<Brick> bricks = new ArrayList<>();
-        Color brickColor = Color.RED;
         for (int i = 0; i < 50; i++) {
             int x = random.nextInt(13) * 100 + 70;
             int y = random.nextInt(7) * 50 + 100;
+
+
+            // Generate random values for red, green, and blue color components
+            int red = random.nextInt(256);
+            int green = random.nextInt(256);
+            int blue = random.nextInt(256);
+            // Create a new color with the random components
+            Color brickColor = new Color(red, green, blue);
+
             bricks.add(new Brick(x, y, 80, 30, brickColor));
         }
         return bricks;
