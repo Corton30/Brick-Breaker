@@ -2,7 +2,6 @@
 package mygame;
 
 import java.awt.*;
-
 public class GameRenderer {
     private GamePanel gamePanel;
 
@@ -11,28 +10,14 @@ public class GameRenderer {
     }
 
     public void render(Graphics g) {
-        gamePanel.getPaddle().draw(g);
-        gamePanel.getBall().draw(g);
-        for (Brick brick : gamePanel.getBricks()) {
-            brick.draw(g);
-        }
+        drawGameObjects(g);
 
         if (gamePanel.getLives() > 0) {
             if (!gamePanel.allBricksHit()) {
-                gamePanel.getPaddle().draw(g);
-                gamePanel.getBall().draw(g);
-                for (Brick brick : gamePanel.getBricks()) {
-                    brick.draw(g);
-                }
                 // Display lives
                 g.setFont(new Font("Arial", Font.BOLD, 20));
                 g.drawString("Lives: " + gamePanel.getLives(), 10, 50);
             } else {
-                gamePanel.getPaddle().draw(g);
-                gamePanel.getBall().draw(g);
-                for (Brick brick : gamePanel.getBricks()) {
-                    brick.draw(g);
-                }
                 // Display winning screen
                 g.setColor(Color.RED);
                 g.setFont(new Font("serif",Font.BOLD, 30));
@@ -50,6 +35,14 @@ public class GameRenderer {
             g.setColor(Color.RED);
             g.setFont(new Font("serif",Font.BOLD, 20));
             g.drawString("Press (Enter) to Restart", (gamePanel.getWidth() / 2 - 100)+40, (gamePanel.getHeight() / 2)+50);
+        }
+    }
+
+    private void drawGameObjects(Graphics g) {
+        gamePanel.getPaddle().draw(g);
+        gamePanel.getBall().draw(g);
+        for (Brick brick : gamePanel.getBricks()) {
+            brick.draw(g);
         }
     }
 }
