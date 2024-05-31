@@ -24,7 +24,7 @@ public class Collision {
                 ball.getY() + ball.getRadius() >= paddle.getY() &&
                 ball.getY() - ball.getRadius() <= paddle.getY() + paddle.getHeight()){
             int paddleSegments = 11; // Number of segments to divide the paddle into
-            double segmentWidth = paddle.getWidth() / paddleSegments; // Width of each segment
+            int segmentWidth = paddle.getWidth() / paddleSegments; // Width of each segment
             int hitSegment = (int) ((ball.getX() -  paddle.getX()) / segmentWidth); // Which segment the ball hit
 
             switch (hitSegment) {
@@ -43,9 +43,9 @@ public class Collision {
                 case 4: // left
                     ball.setXDirection(-1);
                     break;
-                case 5: // Middle
-                    ball.setXDirection(0);
-                    break;
+//                case 5: // Middle
+//                    ball.setXDirection(0);
+//                    break;
                 case 6: // right
                     ball.setXDirection(1);
                     break;
@@ -61,6 +61,9 @@ public class Collision {
                 case 10: // Far right
                     ball.setXDirection(3);
                     break;
+
+                default:
+
 
             }
             ball.reverseYDirection();

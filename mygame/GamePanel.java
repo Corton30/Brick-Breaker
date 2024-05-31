@@ -16,7 +16,7 @@ public class GamePanel extends JPanel {
     private Paddle paddle;
     private Ball ball;
 
-    private int currentLevel;
+    private int currentLevel=1;
     private List<Brick> bricks;
     private int lives = INITIAL_LIVES;
     private Collision collision;
@@ -58,30 +58,27 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
         // Initialize the paddle
-        this.paddle = new Paddle(650, 700, 150, 15);
+        this.paddle = new Paddle(650, 700, 154, 15);
         // Initialize the ball
         this.ball = new Ball(725, 600, 7, this);
         // Initialize the map generator
         mapGenerator = new MapGenerator();
-        // Start with level 1
-        currentLevel = 1;
+        // Generate the bricks for the current level
         bricks = mapGenerator.generateMap(currentLevel);
         setFocusable(true);
         // Initialize the collision detector
         collision = new Collision(this);
-
+        // Initialize the game renderer
+        gameRenderer = new GameRenderer(this);
         // Create a new instance of GameKeyAdapter and add it as a key listener
         GameKeyAdapter gameKeyAdapter = new GameKeyAdapter(this);
         addKeyListener(gameKeyAdapter);
-
-        gameRenderer = new GameRenderer(this);
-
+        // Create a new timer that will update the game every 5 milliseconds
         Timer timer = new Timer(5, new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 ball.update();
                 collision.checkCollisions();
-
+                paddle.update();
                 repaint();
             }
         });
@@ -93,7 +90,6 @@ public class GamePanel extends JPanel {
         paddle.resetPaddle();
         ball.resetBall();
     }
-
     public void resetGame() {
         // Reset the paddle and the ball
         resetPaddle();
@@ -113,7 +109,7 @@ public class GamePanel extends JPanel {
         }
         return true;
     }
-    @Override
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         gameRenderer.render(g);

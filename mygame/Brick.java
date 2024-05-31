@@ -3,7 +3,7 @@ package mygame;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-public class Brick extends Rectangle {
+public class Brick extends Rectanglee {
 
     private boolean isHit;
 

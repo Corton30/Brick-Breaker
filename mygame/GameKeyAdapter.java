@@ -28,14 +28,14 @@ public class GameKeyAdapter extends KeyAdapter {
         int key = e.getKeyCode();
         // If the left or 'A' key is pressed and the paddle is not at the left edge of the screen,
         // move the paddle to the left and start moving the ball.
-        if ((key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) && gamePanel.getPaddle().getX() > 0) {
-            gamePanel.getPaddle().moveLeft();
+        if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+            gamePanel.getPaddle().setPaddleMovingLeft(true);
             gamePanel.getBall().startMoving();
         }
         // If the right or 'D' key is pressed and the paddle is not at the right edge of the screen,
         // move the paddle to the right and start moving the ball.
-        else if ((key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) && gamePanel.getPaddle().getX() + gamePanel.getPaddle().getWidth() <= 1440) {
-            gamePanel.getPaddle().moveRight();
+        else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+            gamePanel.getPaddle().setPaddleMovingRight(true);
             gamePanel.getBall().startMoving();
         }
         // If the 'R' key is pressed, reset the paddle and the ball.
@@ -57,5 +57,13 @@ public class GameKeyAdapter extends KeyAdapter {
         }
         // Repaint the game panel to reflect the changes made by the key press.
         gamePanel.repaint();
+    }
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+            gamePanel.getPaddle().setPaddleMovingLeft(false);
+        } else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+            gamePanel.getPaddle().setPaddleMovingRight(false);
+        }
     }
 }

@@ -1,9 +1,9 @@
 package mygame;
 
-public class Rectangle {
+public class Rectanglee {
     protected int x, y, width, height;
 
-    public Rectangle(int x, int y, int width, int height) {
+    public Rectanglee(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
