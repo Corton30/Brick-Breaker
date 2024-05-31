@@ -8,14 +8,19 @@ import javax.swing.Timer;
 import java.util.ArrayList;
 import java.util.List;
 
-
+enum GameState {
+    RUNNING,
+    PAUSED,
+    GAME_OVER
+}
 
 public class GamePanel extends JPanel {
+
+    private GameState gameState = GameState.RUNNING;
 
     private static final int INITIAL_LIVES = 3;
     private Paddle paddle;
     private Ball ball;
-
     private int currentLevel=1;
     private List<Brick> bricks;
     private int lives = INITIAL_LIVES;
@@ -26,6 +31,12 @@ public class GamePanel extends JPanel {
 
     public Paddle getPaddle() {
         return paddle;
+    }
+    public GameState getGameState() {
+        return gameState;
+    }
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
     public Ball getBall() {
         return ball;
@@ -76,14 +87,16 @@ public class GamePanel extends JPanel {
         // Create a new timer that will update the game every 5 milliseconds
         Timer timer = new Timer(5, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                collision.checkCollisions();
-                ball.update();
-                paddle.update();
+                if (gameState == GameState.RUNNING) {
+                    collision.checkCollisions();
+                    ball.update();
+                    paddle.update();
+                }
                 repaint();
             }
         });
         timer.start();
-    }
+}
 
     public void decrementLives() {
         lives--;

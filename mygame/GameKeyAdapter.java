@@ -55,8 +55,17 @@ public class GameKeyAdapter extends KeyAdapter {
         else  if (key == KeyEvent.VK_ENTER) {
             gamePanel.resetGame();
         }
+        // If the 'P' key is pressed, toggle the game state between RUNNING and PAUSED.
+        else if (key == KeyEvent.VK_P) {
+            if (gamePanel.getGameState() == GameState.RUNNING) {
+                gamePanel.setGameState(GameState.PAUSED);
+            } else if (gamePanel.getGameState() == GameState.PAUSED) {
+                gamePanel.setGameState(GameState.RUNNING);
+            }
+        }
         // Repaint the game panel to reflect the changes made by the key press.
         gamePanel.repaint();
+
     }
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
