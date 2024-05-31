@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.Timer;
 import java.util.ArrayList;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 enum GameState {
@@ -27,6 +29,8 @@ public class GamePanel extends JPanel {
     private Collision collision;
     private MapGenerator mapGenerator;
     private GameRenderer gameRenderer;
+    private int mouseX = 0;
+    private int mouseY = 0;
 
 
     public Paddle getPaddle() {
@@ -65,6 +69,12 @@ public class GamePanel extends JPanel {
     public  List<Brick> getBricks() {
         return bricks;
     }
+    public int getMouseX() {
+        return mouseX;
+    }
+    public int getMouseY() {
+        return mouseY;
+    }
 
     public GamePanel() {
         // Initialize the paddle
@@ -95,6 +105,14 @@ public class GamePanel extends JPanel {
             }
         });
         timer.start();
+
+        addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                mouseX = e.getX();
+                mouseY = e.getY();
+            }
+        });
 }
 
     public void decrementLives() {

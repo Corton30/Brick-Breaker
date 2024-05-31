@@ -10,6 +10,11 @@ public class GameRenderer {
     }
 
     public void render(Graphics g) {
+        // Draw mouse coordinates
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Arial", Font.PLAIN, 12));
+        g.drawString("Mouse X: " + gamePanel.getMouseX() + ", Mouse Y: " + gamePanel.getMouseY(), 10, 15);
+
         if (gamePanel.getGameState()!= GameState.GAME_OVER) {
             drawGameObjects(g);
             if (!gamePanel.allBricksHit()) {
