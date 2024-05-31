@@ -71,26 +71,48 @@ public class Collision {
                 // Side collision, modify x-direction based on where it hits relative to paddle center
                 if (ball.getX() < paddle.getX()) {
                     // Hits the left side
-                    ball.setXDirection(-Math.abs(ball.getXDirection())); // Force direction left
+                    ball.setXDirection(-1); // Force direction left
                 } else {
                     // Hits the right side
-                    ball.setXDirection(Math.abs(ball.getXDirection())); // Force direction right
+                    ball.setXDirection(1); // Force direction right
                 }
             }
         }
     }
 
-    private void checkBallBrickCollision() {
+    public void checkBallBrickCollision() {
         Ball ball = gamePanel.getBall();
         List<Brick> bricks = gamePanel.getBricks();
-        for (Iterator<Brick> iterator = bricks.iterator(); iterator.hasNext();) {
-            Brick brick = iterator.next();
-            if (!brick.isAlreadyHit() && brick.isHit(ball)) {
-                ball.reverseYDirection();
-                iterator.remove();
+        Rectangle ballBounds = new Rectangle(ball.getX() - ball.getRadius(), ball.getY() - ball.getRadius(), 2 * ball.getRadius(), 2 * ball.getRadius());
+
+        for (Brick brick : bricks) {
+            Rectangle brickBounds = new Rectangle(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
+            if (ballBounds.intersects(brickBounds)) {
+                // Calculate centers
+                int ballCenterX = ball.getX();
+                int ballCenterY = ball.getY();
+                int brickCenterX = brick.getX() + brick.getWidth() / 2;
+                int brickCenterY = brick.getY() + brick.getHeight() / 2;
+
+                // Determine direction of the collision
+                int deltaX = ballCenterX - brickCenterX;
+                int deltaY = ballCenterY - brickCenterY;
+
+                if (Math.abs(deltaY) > Math.abs(deltaX)) {
+                    ball.reverseYDirection();
+                } else {
+                    ball.reverseXDirection();
+                }
+
+                // Assume brick is destroyed or marked as hit
+                brick.setIsHit(true); // Update brick status
+                break; // Optional: remove the brick if it should be destroyed on hit
             }
         }
     }
+
+
+
 
     private void checkBallWallCollision() {
         Ball ball = gamePanel.getBall();
