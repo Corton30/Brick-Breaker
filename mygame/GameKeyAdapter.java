@@ -53,8 +53,8 @@ public class GameKeyAdapter extends KeyAdapter {
             gamePanel.resetBall();
         }
         // If the 'Enter' key is pressed, reset the game
-        else  if (key == KeyEvent.VK_ENTER) {
-            if (gamePanel.getGameState() == GameState.GAME_OVER) {
+        else if (key == KeyEvent.VK_ENTER) {
+            if (gamePanel.getGameState() == GameState.GAME_OVER || gamePanel.getGameState() == GameState.GAME_WON) {
                 gamePanel.resetGame();
                 gamePanel.setGameState(GameState.RUNNING);
             }

@@ -13,7 +13,8 @@ import java.util.List;
 enum GameState {
     RUNNING,
     PAUSED,
-    GAME_OVER
+    GAME_OVER,
+    GAME_WON
 }
 
 public class GamePanel extends JPanel {
