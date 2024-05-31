@@ -3,14 +3,14 @@ package mygame.props;
 import mygame.GamePanel;
 
 import java.awt.*;
-import java.util.Random;
+
 
 public class Ball {
     private int x, y, radius;
 
     private double xDirection = 0; // velocity in x direction
     private double yDirection = 1; // velocity in y direction
-    private Random random = new Random();
+
     private boolean isMoving = false;
     private GamePanel gamePanel;
     private Color color;
@@ -54,8 +54,8 @@ public class Ball {
     }
     public void update() {
         if (isMoving) {
-            x += xDirection;
-            y += yDirection;
+            x += (int) xDirection;
+            y += (int) yDirection;
         }
     }
 
