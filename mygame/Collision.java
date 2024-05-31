@@ -1,6 +1,7 @@
 package mygame;
 
 import java.util.List;
+import java.util.Iterator;
 
 public class Collision {
     private GamePanel gamePanel;
@@ -69,14 +70,11 @@ public class Collision {
     private void checkBallBrickCollision() {
         Ball ball = gamePanel.getBall();
         List<Brick> bricks = gamePanel.getBricks();
-        for (Brick brick : bricks) {
-            if (!brick.isAlreadyHit() &&
-                    ball.getX() + ball.getRadius() >= brick.getX() &&
-                    ball.getX() - ball.getRadius() <= brick.getX() + brick.getWidth() &&
-                    ball.getY() + ball.getRadius() >= brick.getY() &&
-                    ball.getY() - ball.getRadius() <= brick.getY() + brick.getHeight()) {
-                brick.isHit(ball);
+        for (Iterator<Brick> iterator = bricks.iterator(); iterator.hasNext();) {
+            Brick brick = iterator.next();
+            if (!brick.isAlreadyHit() && brick.isHit(ball)) {
                 ball.reverseYDirection();
+                iterator.remove();
             }
         }
     }

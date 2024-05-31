@@ -1,6 +1,7 @@
 package mygame;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 public class Brick extends Rectangle {
 
@@ -20,18 +21,14 @@ public class Brick extends Rectangle {
     }
 
     public boolean isHit(Ball ball) {
-        if (!isHit &&
-                ball.getX() + ball.getRadius() >= x &&
-                ball.getX() - ball.getRadius() <= x + width &&
-                ball.getY() + ball.getRadius() >= y &&
-                ball.getY() - ball.getRadius() <= y + height){
+        Rectangle2D ballRect = new Rectangle2D.Double(ball.getX() - ball.getRadius(), ball.getY() - ball.getRadius(), 2 * ball.getRadius(), 2 * ball.getRadius());
+        Rectangle2D brickRect = new Rectangle2D.Double(this.x, this.y, this.width, this.height);
+        if (!isHit && ballRect.intersects(brickRect)) {
             isHit = true;
             return true;
         }
         return false;
-
     }
-
     public boolean isAlreadyHit() {
         return isHit;
     }
