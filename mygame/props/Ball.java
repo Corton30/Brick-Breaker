@@ -7,17 +7,20 @@ import java.util.Random;
 
 public class Ball {
     private int x, y, radius;
+
     private double xDirection = 0; // velocity in x direction
     private double yDirection = 1; // velocity in y direction
     private Random random = new Random();
     private boolean isMoving = false;
     private GamePanel gamePanel;
+    private Color color;
 
-    public Ball(int x, int y, int radius, GamePanel gamePanel) {
+    public Ball(int x, int y, int radius, GamePanel gamePanel, Color color) {
         this.x = x;
         this.y = y;
         this.radius = radius;
         this.gamePanel = gamePanel;
+        this.color = color;
     }
     //getters and setters
     public int getX() {
@@ -46,7 +49,7 @@ public class Ball {
 
     //Methods
     public void draw(Graphics g) {
-        g.setColor(Color.BLUE);
+        g.setColor(this.color);
         g.fillOval(x - radius, y - radius, 2 * radius, 2 * radius);
     }
     public void update() {

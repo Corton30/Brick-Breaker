@@ -1,13 +1,16 @@
 package mygame.props;
 
+import java.awt.*;
+
 public class Rectanglee {
     protected int x, y, width, height;
-
-    public Rectanglee(int x, int y, int width, int height) {
+    private Color color;
+    public Rectanglee(int x, int y, int width, int height,Color  color) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.color = color;
     }
 
     // getters and setters
@@ -41,5 +44,12 @@ public class Rectanglee {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

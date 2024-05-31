@@ -8,15 +8,15 @@ public class Paddle extends Rectanglee {
     private static final int PADDLE_SPEED = 5;
     private boolean isPaddleMovingLeft = false;
     private boolean isPaddleMovingRight = false;
-    public Paddle(int x, int y, int width, int height) {
-        super(x, y, width, height);
+    public Paddle(int x, int y, int width, int height,Color color) {
+        super(x, y, width, height, color);
     }
 
     //getters and setters
 
     //Methods
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(this.getColor());
         g.fillRect(x, y, width, height);
     }
 

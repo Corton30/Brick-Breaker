@@ -1,21 +1,22 @@
 package mygame.props;
 
 import java.awt.*;
+import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
 public class Brick extends Rectanglee {
-
     private boolean isHit;
 
 
-    public Brick(int x, int y, int width, int height) {
-        super(x, y, width, height);
+    public Brick(int x, int y, int width, int height,Color color) {
+        super(x, y, width, height, color);
         this.isHit = false;
     }
 
+
     public void draw(Graphics g) {
         if (!isHit) {
-            g.setColor(Color.RED);
+            g.setColor(this.getColor());
             g.fillRect(x, y, width, height);
         }
     }

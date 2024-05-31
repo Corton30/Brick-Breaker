@@ -83,9 +83,9 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
         // Initialize the paddle
-        this.paddle = new Paddle(650, 700, 154, 15);
+        this.paddle = new Paddle(650, 700, 154, 15,Color.BLACK);
         // Initialize the ball
-        this.ball = new Ball(725, 600, 8, this);
+        this.ball = new Ball(725, 600, 8, this, Color.BLUE);
         // Initialize the map generator
         mapGenerator = new MapGenerator();
         // Generate the bricks for the current level
