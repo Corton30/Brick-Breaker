@@ -10,9 +10,8 @@ public class GameRenderer {
     }
 
     public void render(Graphics g) {
-        drawGameObjects(g);
-
         if (gamePanel.getLives() > 0) {
+            drawGameObjects(g);
             if (!gamePanel.allBricksHit()) {
                 // Display lives
                 g.setFont(new Font("Arial", Font.BOLD, 20));

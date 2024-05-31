@@ -60,7 +60,7 @@ public class GamePanel extends JPanel {
         // Initialize the paddle
         this.paddle = new Paddle(650, 700, 154, 15);
         // Initialize the ball
-        this.ball = new Ball(725, 600, 7, this);
+        this.ball = new Ball(725, 600, 8, this);
         // Initialize the map generator
         mapGenerator = new MapGenerator();
         // Generate the bricks for the current level
@@ -76,8 +76,8 @@ public class GamePanel extends JPanel {
         // Create a new timer that will update the game every 5 milliseconds
         Timer timer = new Timer(5, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ball.update();
                 collision.checkCollisions();
+                ball.update();
                 paddle.update();
                 repaint();
             }

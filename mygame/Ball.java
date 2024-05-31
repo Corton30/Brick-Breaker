@@ -24,6 +24,16 @@ public class Ball {
     public int getY() {
         return y;
     }
+    public double getXDirection() {
+        return xDirection;
+    }
+    public double getYDirection() {
+        return yDirection;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
     public int getRadius() {
         return radius;
     }
@@ -57,7 +67,7 @@ public class Ball {
         // Reinitialize the ball
         this.x = 725;
         this.y = 600;
-        this.radius = 7;
+        this.radius = 8;
         this.isMoving = false;
         this.xDirection = 0;
         this.yDirection = 1;

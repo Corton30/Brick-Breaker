@@ -2,6 +2,7 @@ package mygame;
 
 import java.util.List;
 import java.util.Iterator;
+import java.awt.Rectangle;
 
 public class Collision {
     private GamePanel gamePanel;
@@ -19,54 +20,63 @@ public class Collision {
     private void checkBallPaddleCollision() {
         Paddle paddle = gamePanel.getPaddle();
         Ball ball = gamePanel.getBall();
-        if(     ball.getX() + ball.getRadius() >= paddle.getX() &&
-                ball.getX() - ball.getRadius() <= paddle.getX() + paddle.getWidth() &&
-                ball.getY() + ball.getRadius() >= paddle.getY() &&
-                ball.getY() - ball.getRadius() <= paddle.getY() + paddle.getHeight()){
-            int paddleSegments = 11; // Number of segments to divide the paddle into
-            int segmentWidth = paddle.getWidth() / paddleSegments; // Width of each segment
-            int hitSegment = (int) ((ball.getX() -  paddle.getX()) / segmentWidth); // Which segment the ball hit
+        Rectangle ballBounds = new Rectangle(ball.getX() - ball.getRadius(), ball.getY() - ball.getRadius(), ball.getRadius() * 2, ball.getRadius() * 2);
+        Rectangle paddleBounds = new Rectangle(paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight());
 
-            switch (hitSegment) {
-                case 0: // Far left
-                    ball.setXDirection(-3);
-                    break;
-                case 1: // Far left
-                    ball.setXDirection(-2.5);
-                    break;
-                case 2: // left
-                    ball.setXDirection(-1);
-                    break;
-                case 3: // Left
-                    ball.setXDirection(-1.5);
-                    break;
-                case 4: // left
-                    ball.setXDirection(-1);
-                    break;
+        if(ballBounds.intersects(paddleBounds)){
+            // Check if the collision is on the top of the paddle
+            if (ball.getY() + ball.getRadius() >= paddle.getY() && ball.getY() + ball.getRadius() <= paddle.getY() + 5) {  // Adjust 5 to a suitable threshold
+                ball.setY(paddle.getY() - ball.getRadius() - 1); // Ensure the ball is placed above the paddle
+
+                int paddleSegments = 11; // Number of segments to divide the paddle into
+                int segmentWidth = paddle.getWidth() / paddleSegments; // Width of each segment
+                int hitSegment = ((ball.getX() -  paddle.getX()) / segmentWidth); // Which segment the ball hit
+                switch (hitSegment) {
+                    case 0: // Far left
+                        ball.setXDirection(-3);
+                        break;
+                    case 1: // Far left
+                        ball.setXDirection(-2.5);
+                        break;
+                    case 2: // left
+                        ball.setXDirection(-1);
+                        break;
+                    case 3: // Left
+                        ball.setXDirection(-1.5);
+                        break;
+                    case 4: // left
+                        ball.setXDirection(-1);
+                        break;
 //                case 5: // Middle
 //                    ball.setXDirection(0);
 //                    break;
-                case 6: // right
-                    ball.setXDirection(1);
-                    break;
-                case 7: // right
-                    ball.setXDirection(1.5);
-                    break;
-                case 8: // right
-                    ball.setXDirection(2);
-                    break;
-                case 9: // Far right
-                    ball.setXDirection(2.5);
-                    break;
-                case 10: // Far right
-                    ball.setXDirection(3);
-                    break;
-
-                default:
-
-
+                    case 6: // right
+                        ball.setXDirection(1);
+                        break;
+                    case 7: // right
+                        ball.setXDirection(1.5);
+                        break;
+                    case 8: // right
+                        ball.setXDirection(2);
+                        break;
+                    case 9: // Far right
+                        ball.setXDirection(2.5);
+                        break;
+                    case 10: // Far right
+                        ball.setXDirection(3);
+                        break;
+                }
+                ball.reverseYDirection(); // Reverse the vertical direction
+            } else {
+                // Side collision, modify x-direction based on where it hits relative to paddle center
+                if (ball.getX() < paddle.getX()) {
+                    // Hits the left side
+                    ball.setXDirection(-Math.abs(ball.getXDirection())); // Force direction left
+                } else {
+                    // Hits the right side
+                    ball.setXDirection(Math.abs(ball.getXDirection())); // Force direction right
+                }
             }
-            ball.reverseYDirection();
         }
     }
 
@@ -85,17 +95,17 @@ public class Collision {
     private void checkBallWallCollision() {
         Ball ball = gamePanel.getBall();
         // Collision with left or right walls
-        if (ball.getX() - ball.getRadius() <= 0 || ball.getX() + ball.getRadius() >= 1440) {
-            ball.reverseXDirection();
+        if (ball.getX() < 0 || ball.getX()  > 1440) {
+           ball.reverseXDirection();
         }
 
         // Collision with top wall
-        if (ball.getY() - ball.getRadius() <= 0) {
+        if (ball.getY() < 0) {
             ball.reverseYDirection();
         }
 
         // Collision with bottom wall (consider game over or life decrement scenario)
-        if (ball.getY() + ball.getRadius() >= 900 - ball.getRadius()) {
+        if (ball.getY() > 780 - ball.getRadius()) {
             ball.reverseYDirection();
             gamePanel.decrementLives();
         }
