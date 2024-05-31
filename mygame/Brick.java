@@ -29,15 +29,10 @@ public class Brick extends Rectanglee {
         }
         return false;
     }
+
     public boolean isAlreadyHit() {
         return isHit;
     }
 
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
-    }
-
-    public void setIsHit(boolean b) {
-        isHit = b;
-    }
 }
+
