@@ -6,7 +6,7 @@ import java.util.Random;
 public class Ball {
     private int x, y, radius;
     private double xDirection = 0; // velocity in x direction
-    private double yDirection = 2; // velocity in y direction
+    private double yDirection = 1; // velocity in y direction
     private Random random = new Random();
     private boolean isMoving = false;
     private GamePanel gamePanel;
@@ -60,6 +60,6 @@ public class Ball {
         this.radius = 7;
         this.isMoving = false;
         this.xDirection = 0;
-        this.yDirection = 2;
+        this.yDirection = 1;
     }
 }

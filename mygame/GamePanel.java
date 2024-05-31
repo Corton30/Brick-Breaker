@@ -66,7 +66,7 @@ public class GamePanel extends JPanel {
         GameKeyAdapter gameKeyAdapter = new GameKeyAdapter(this);
         addKeyListener(gameKeyAdapter);
 
-        Timer timer = new Timer(10, new ActionListener() {
+        Timer timer = new Timer(5, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ball.update();
@@ -84,6 +84,17 @@ public class GamePanel extends JPanel {
         ball.resetBall();
     }
 
+    public void resetGame() {
+        // Reset the paddle and the ball
+        resetPaddle();
+        resetBall();
+
+        // Reset the lives
+        lives = 3;
+
+        // Regenerate the bricks for the current level
+        bricks = mapGenerator.generateMap(currentLevel);
+    }
     public boolean allBricksHit() {
         for (Brick brick : bricks) {
             if (!brick.isAlreadyHit()) {
@@ -107,14 +118,29 @@ public class GamePanel extends JPanel {
                 g.setFont(new Font("Arial", Font.BOLD, 20));
                 g.drawString("Lives: " + lives, 10, 50);
             } else {
+                paddle.draw(g);
+                ball.draw(g);
+                for (Brick brick : bricks) {
+                    brick.draw(g);
+                }
                 // Display winning screen
-                g.setFont(new Font("Arial", Font.BOLD, 50));
-                g.drawString("You Win!", getWidth() / 2 - 100, getHeight() / 2);
+                g.setColor(Color.RED);
+                g.setFont(new Font("serif",Font.BOLD, 30));
+                g.drawString("You Won", getWidth() / 2 - 100, getHeight() / 2);
+                // Display restart
+                g.setColor(Color.RED);
+                g.setFont(new Font("serif",Font.BOLD, 20));
+                g.drawString("Press (Enter) to Restart", (getWidth() / 2 - 100)-30, (getHeight() / 2)+50);
             }
         } else {
+
             // Display losing screen
             g.setFont(new Font("Arial", Font.BOLD, 50));
             g.drawString("Game Over", getWidth() / 2 - 100, getHeight() / 2);
+            // Display restart
+            g.setColor(Color.RED);
+            g.setFont(new Font("serif",Font.BOLD, 20));
+            g.drawString("Press (Enter) to Restart", (getWidth() / 2 - 100)+40, (getHeight() / 2)+50);
         }
     }
 }
