@@ -1,4 +1,6 @@
-package mygame;
+package mygame.props;
+
+import mygame.GamePanel;
 
 import java.awt.*;
 import java.util.Random;

@@ -1,4 +1,8 @@
-package mygame;
+package mygame.logic;
+
+import mygame.GamePanel;
+import mygame.GUI.MapGenerator;
+import mygame.props.Brick;
 
 import java.util.List;
 

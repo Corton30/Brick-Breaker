@@ -1,21 +1,23 @@
 package mygame;
 
+import mygame.GUI.GameKeyAdapter;
+import mygame.GUI.GameRenderer;
+import mygame.GUI.MapGenerator;
+import mygame.extra.GameState;
+import mygame.logic.Collision;
+import mygame.logic.LevelHandler;
+import mygame.props.Ball;
+import mygame.props.Brick;
+import mygame.props.Paddle;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.Timer;
-import java.util.ArrayList;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-
-enum GameState {
-    RUNNING,
-    PAUSED,
-    GAME_OVER,
-    GAME_WON
-}
 
 public class GamePanel extends JPanel {
 

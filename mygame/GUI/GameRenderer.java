@@ -1,5 +1,9 @@
 // GameRenderer.java
-package mygame;
+package mygame.GUI;
+
+import mygame.GamePanel;
+import mygame.extra.GameState;
+import mygame.props.Brick;
 
 import java.awt.*;
 

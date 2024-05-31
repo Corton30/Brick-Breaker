@@ -1,4 +1,4 @@
-package mygame;
+package mygame.props;
 
 public class Rectanglee {
     protected int x, y, width, height;

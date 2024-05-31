@@ -1,4 +1,6 @@
-package mygame;
+package mygame.GUI;
+
+import mygame.props.Brick;
 
 import java.util.ArrayList;
 import java.util.List;

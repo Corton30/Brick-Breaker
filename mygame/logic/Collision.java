@@ -1,4 +1,9 @@
-package mygame;
+package mygame.logic;
+
+import mygame.GamePanel;
+import mygame.props.Ball;
+import mygame.props.Brick;
+import mygame.props.Paddle;
 
 import java.util.List;
 import java.util.Iterator;

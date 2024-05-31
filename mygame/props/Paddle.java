@@ -1,8 +1,7 @@
-package mygame;
+package mygame.props;
 
 import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.Rectangle;
 
 public class Paddle extends Rectanglee {
 

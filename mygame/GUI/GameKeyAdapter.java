@@ -1,4 +1,7 @@
-package mygame;
+package mygame.GUI;
+
+import mygame.GamePanel;
+import mygame.extra.GameState;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

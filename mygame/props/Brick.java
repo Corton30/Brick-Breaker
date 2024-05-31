@@ -1,4 +1,4 @@
-package mygame;
+package mygame.props;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;

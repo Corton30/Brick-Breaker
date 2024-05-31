@@ -1,5 +1,7 @@
 package mygame;
 
+import mygame.GUI.MenuBarCreator;
+
 import javax.swing.*;
 
 public class Main {

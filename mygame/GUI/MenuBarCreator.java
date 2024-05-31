@@ -1,4 +1,6 @@
-package mygame;
+package mygame.GUI;
+
+import mygame.GamePanel;
 
 import javax.swing.*;
 
