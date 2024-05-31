@@ -9,7 +9,7 @@ import java.util.List;
 public class LevelHandler {
     private int currentLevel;
     private MapGenerator mapGenerator;
-    private int maxLevel = 5;
+    private int maxLevel = 9;
     private GamePanel gamePanel;
 
     public LevelHandler(GamePanel gamePanel, MapGenerator mapGenerator) {
@@ -38,7 +38,7 @@ public class LevelHandler {
     public boolean isLastLevel() {
         // Return true if the current level is the last level
         // Adjust this based on the number of levels in your game
-        return currentLevel == 5;
+        return currentLevel == maxLevel;
     }
 
     public void loadLevel() {

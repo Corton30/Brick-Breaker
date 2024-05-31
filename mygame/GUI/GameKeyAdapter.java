@@ -49,7 +49,7 @@ public class GameKeyAdapter extends KeyAdapter {
         }
         // If a number key between 1 and 5 is pressed, change the level to the number pressed,
         // generate a new map for that level, and reset the paddle and the ball.
-        if (key >= KeyEvent.VK_1 && key <= KeyEvent.VK_5) {
+        if (key >= KeyEvent.VK_1 && key <= KeyEvent.VK_9) {
             int level = key - KeyEvent.VK_0;
             if (level <= gamePanel.getLevelHandler().getMaxLevel()) {
                 gamePanel.getLevelHandler().setCurrentLevel(level);

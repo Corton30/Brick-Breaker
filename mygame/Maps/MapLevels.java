@@ -15,7 +15,6 @@ public class MapLevels {
         bricks.add(new Brick(100, 200, 1200, 20));
         return bricks;
     }
-
     public List<Brick> levelTwo() {
         List<Brick> bricks = new ArrayList<>();
         for (int i = 1; i < 14; i++) {
@@ -25,7 +24,6 @@ public class MapLevels {
         }
         return bricks;
     }
-
     public List<Brick> levelThree() {
         List<Brick> bricks = new ArrayList<>();
         for (int i = 3; i < 11; i++) {
@@ -38,7 +36,6 @@ public class MapLevels {
         }
         return bricks;
     }
-
     public List<Brick> levelFour() {
         List<Brick> bricks = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
@@ -48,7 +45,6 @@ public class MapLevels {
         }
         return bricks;
     }
-
     public List<Brick> levelFive() {
         List<Brick> bricks = new ArrayList<>();
         int centerX = 700; // Center of the screen
@@ -82,5 +78,84 @@ public class MapLevels {
         }
         return bricks;
     }
+    public List<Brick> levelSix() {
+        List<Brick> bricks = new ArrayList<>();
+        int brickSize = 60; // Square bricks
+        int startX = 90; // Starting x-offset closer to the left side of the screen
+        int startY = 100; // Starting y-offset, kept same as your previous setup
+
+        // Setup for 7 rows and more columns extending horizontally
+        for (int j = 0; j < 6; j++) { // Limit to 7 rows
+            for (int i = 0; i < 21; i++) { // Increased the number of columns to expand width
+                if ((i + j) % 2 == 0) { // Maintain the checkered pattern
+                    bricks.add(new Brick(i * brickSize + startX, j * brickSize + startY, brickSize, brickSize));
+                }
+            }
+        }
+        return bricks;
+    }
+    public List<Brick> levelSeven() {
+        List<Brick> bricks = new ArrayList<>();
+        int brickWidth = 60;
+        int brickHeight = 20;
+        int centerX = 700;
+        int centerY = 250;
+        int radius = 200;
+        for (int i = 0; i < 360; i += 15) {
+            double angle = Math.toRadians(i);
+            int x = centerX + (int) (radius * Math.cos(angle));
+            int y = centerY + (int) (radius * Math.sin(angle));
+            bricks.add(new Brick(x, y, brickWidth, brickHeight));
+        }
+        return bricks;
+    }
+
+    public List<Brick> levelEight() {
+            List<Brick> bricks = new ArrayList<>();
+            int brickSize = 60; // Square bricks
+            int startX = 300; // Starting x-offset closer to the left side of the screen
+            int startY = 50; // Starting y-offset, kept same as your previous setup
+
+            // Heart shape pattern
+            int[][] heartShape = {
+                    {0,0,1,1,0,0,1,1,0,0},
+                    {0,1,1,1,1,1,1,1,1,0},
+                    {1,1,1,1,1,1,1,1,1,1},
+                    {1,1,1,1,1,1,1,1,1,1},
+                    {0,1,1,1,1,1,1,1,1,0},
+                    {0,0,1,1,1,1,1,1,0,0},
+                    {0,0,0,1,1,1,1,0,0,0},
+                    {0,0,0,0,1,1,0,0,0,0}
+            };
+
+            // Generate bricks based on the heart shape pattern
+            for (int i = 0; i < heartShape.length; i++) {
+                for (int j = 0; j < heartShape[i].length; j++) {
+                    if (heartShape[i][j] == 1) {
+                        bricks.add(new Brick(j * brickSize + startX, i * brickSize + startY, brickSize, brickSize));
+                    }
+                }
+            }
+
+            return bricks;
+    }
+
+    public List<Brick> levelNine() {
+        List<Brick> bricks = new ArrayList<>();
+        int brickWidth = 60;
+        int brickHeight = 20;
+        int centerX = 700;
+        int centerY = 250;
+        int radius = 200;
+        for (int i = 0; i < 360; i += 15) {
+            double angle = Math.toRadians(i);
+            int x = centerX + (int) (radius * Math.cos(angle));
+            int y = centerY + (int) (radius * Math.sin(angle));
+            bricks.add(new Brick(x, y, brickWidth, brickHeight));
+        }
+        return bricks;
+    }
+
+
 }
 
