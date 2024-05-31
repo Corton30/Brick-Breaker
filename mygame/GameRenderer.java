@@ -10,13 +10,15 @@ public class GameRenderer {
     }
 
     public void render(Graphics g) {
-        if (gamePanel.getLives() > 0) {
+        if (gamePanel.getGameState()!= GameState.GAME_OVER) {
             drawGameObjects(g);
             if (!gamePanel.allBricksHit()) {
                 // Display lives
                 g.setFont(new Font("Arial", Font.BOLD, 20));
                 g.drawString("Lives: " + gamePanel.getLives(), 10, 50);
             } else {
+                // Set GameState to GAME_OVER
+                gamePanel.setGameState(GameState.GAME_OVER);
                 // Display winning screen
                 g.setColor(Color.RED);
                 g.setFont(new Font("serif",Font.BOLD, 30));

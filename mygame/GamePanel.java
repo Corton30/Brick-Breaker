@@ -41,7 +41,6 @@ public class GamePanel extends JPanel {
     public Ball getBall() {
         return ball;
     }
-
     public int getLives() {
         return lives;
     }
@@ -100,17 +99,19 @@ public class GamePanel extends JPanel {
 
     public void decrementLives() {
         lives--;
-        paddle.resetPaddle();
-        ball.resetBall();
+        if (lives == 0) {
+            gameState = GameState.GAME_OVER;
+        } else {
+            paddle.resetPaddle();
+            ball.resetBall();
+        }
     }
     public void resetGame() {
         // Reset the paddle and the ball
         resetPaddle();
         resetBall();
-
         // Reset the lives
         lives = INITIAL_LIVES;
-
         // Regenerate the bricks for the current level
         bricks = mapGenerator.generateMap(currentLevel);
     }
