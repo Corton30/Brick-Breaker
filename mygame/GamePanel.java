@@ -32,6 +32,8 @@ public class GamePanel extends JPanel {
     private GameRenderer gameRenderer;
     private int mouseX = 0;
     private int mouseY = 0;
+    private LevelHandler levelHandler;
+
 
 
     public Paddle getPaddle() {
@@ -91,6 +93,8 @@ public class GamePanel extends JPanel {
         collision = new Collision(this);
         // Initialize the game renderer
         gameRenderer = new GameRenderer(this);
+        // Initialize the level handler
+        levelHandler = new LevelHandler(this, mapGenerator);
         // Create a new instance of GameKeyAdapter and add it as a key listener
         GameKeyAdapter gameKeyAdapter = new GameKeyAdapter(this);
         addKeyListener(gameKeyAdapter);
@@ -133,6 +137,13 @@ public class GamePanel extends JPanel {
         lives = INITIAL_LIVES;
         // Regenerate the bricks for the current level
         bricks = mapGenerator.generateMap(currentLevel);
+        // If the game was won and it's not the last level, go to the next level
+        if (gameState == GameState.GAME_WON && !levelHandler.isLastLevel()) {
+            levelHandler.nextLevel();
+        } else {
+            // Otherwise, reset to the first level
+            levelHandler = new LevelHandler(this, mapGenerator);
+        }
     }
     public boolean allBricksHit() {
         for (Brick brick : bricks) {
@@ -147,5 +158,9 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         gameRenderer.render(g);
 
+    }
+
+    public LevelHandler getLevelHandler() {
+        return levelHandler;
     }
 }

@@ -46,11 +46,12 @@ public class GameKeyAdapter extends KeyAdapter {
         }
         // If a number key between 1 and 5 is pressed, change the level to the number pressed,
         // generate a new map for that level, and reset the paddle and the ball.
-        else if (key >= KeyEvent.VK_1 && key <= KeyEvent.VK_5) {
-            gamePanel.setCurrentLevel(key - KeyEvent.VK_0);
-            gamePanel.setBricks(gamePanel.getMapGenerator().generateMap(gamePanel.getCurrentLevel()));
-            gamePanel.resetPaddle();
-            gamePanel.resetBall();
+        if (key >= KeyEvent.VK_1 && key <= KeyEvent.VK_5) {
+            int level = key - KeyEvent.VK_0;
+            if (level <= gamePanel.getLevelHandler().getMaxLevel()) {
+                gamePanel.getLevelHandler().setCurrentLevel(level);
+                gamePanel.getLevelHandler().loadLevel();
+            }
         }
         // If the 'Enter' key is pressed, reset the game
         else if (key == KeyEvent.VK_ENTER) {

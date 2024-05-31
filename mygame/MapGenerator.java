@@ -7,6 +7,9 @@ import java.util.Random;
 public class MapGenerator {
     private Random random = new Random();
 
+    public int getMaxLevel() {
+        return 5;
+    }
     public List<Brick> generateMap(int level) {
         List<Brick> bricks = new ArrayList<>();
         switch (level) {
