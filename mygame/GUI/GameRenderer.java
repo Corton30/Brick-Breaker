@@ -40,6 +40,7 @@ public class GameRenderer {
             drawGameObjects(g);
             if (!gamePanel.allBricksHit()) {
                 // Display lives
+                g.setColor(Color.BLACK);
                 g.setFont(new Font("Arial", Font.BOLD, 20));
                 g.drawString("Lives: " + gamePanel.getLives(), 10, 50);
             } else {

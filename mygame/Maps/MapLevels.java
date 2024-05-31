@@ -20,9 +20,20 @@ public class MapLevels {
     }
     public List<Brick> levelTwo() {
         List<Brick> bricks = new ArrayList<>();
-        Color brickColor = Color.RED;
+
         for (int i = 1; i < 14; i++) {
             for (int j = 2; j < 8; j++) {
+
+
+// Generate random values for red, green, and blue color components
+                int red = random.nextInt(5, 80); // Low values to minimize red influence
+                int green = random.nextInt(50, 100); // Low values to minimize green influence
+                int blue = random.nextInt(180, 255); // High values to ensure it remains dominantly blue
+
+// Create a new color with the random components
+                Color brickColor = new Color(red, green, blue);
+
+
                 bricks.add(new Brick(i * 100, j * 50, 80, 30,brickColor));
             }
         }
@@ -129,13 +140,12 @@ public class MapLevels {
         }
         return bricks;
     }
-
     public List<Brick> levelEight() {
             List<Brick> bricks = new ArrayList<>();
         Color brickColor = Color.RED;
 
         int brickSize = 60; // Square bricks
-            int startX = 300; // Starting x-offset closer to the left side of the screen
+            int startX = 430; // Starting x-offset closer to the left side of the screen
             int startY = 50; // Starting y-offset, kept same as your previous setup
 
             // Heart shape pattern
@@ -164,18 +174,34 @@ public class MapLevels {
 
     public List<Brick> levelNine() {
         List<Brick> bricks = new ArrayList<>();
-        Color brickColor = Color.RED;
-        int brickWidth = 60;
-        int brickHeight = 20;
-        int centerX = 700;
-        int centerY = 250;
-        int radius = 200;
-        for (int i = 0; i < 360; i += 15) {
-            double angle = Math.toRadians(i);
-            int x = centerX + (int) (radius * Math.cos(angle));
-            int y = centerY + (int) (radius * Math.sin(angle));
-            bricks.add(new Brick(x, y, brickWidth, brickHeight,brickColor));
+        Color brickColor = Color.GREEN;
+
+        int brickSize = 50; // Square bricks
+        int startX = 500; // Starting x-offset closer to the left side of the screen
+        int startY = 50; // Starting y-offset, kept same as your previous setup
+
+        // Diamond shape pattern
+        int[][] diamondShape = {
+                {0,0,0,0,1,0,0,0,0},
+                {0,0,0,1,1,1,0,0,0},
+                {0,0,1,1,1,1,1,0,0},
+                {0,1,1,1,1,1,1,1,0},
+                {1,1,1,1,1,1,1,1,1},
+                {0,1,1,1,1,1,1,1,0},
+                {0,0,1,1,1,1,1,0,0},
+                {0,0,0,1,1,1,0,0,0},
+                {0,0,0,0,1,0,0,0,0}
+        };
+
+        // Generate bricks based on the diamond shape pattern
+        for (int i = 0; i < diamondShape.length; i++) {
+            for (int j = 0; j < diamondShape[i].length; j++) {
+                if (diamondShape[i][j] == 1) {
+                    bricks.add(new Brick(j * brickSize + startX, i * brickSize + startY, brickSize, brickSize, brickColor));
+                }
+            }
         }
+
         return bricks;
     }
 
