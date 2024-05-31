@@ -26,6 +26,7 @@ public class GameKeyAdapter extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+
         // If the left or 'A' key is pressed and the paddle is not at the left edge of the screen,
         // move the paddle to the left and start moving the ball.
         if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
@@ -68,13 +69,21 @@ public class GameKeyAdapter extends KeyAdapter {
         }
         // Repaint the game panel to reflect the changes made by the key press.
         gamePanel.repaint();
-
     }
+
+    /**
+     * This method is called whenever a key is released.
+     * It contains logic for stopping the paddle when the left or right key is released.
+     * @param e The KeyEvent that triggered this method call.
+     */
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
+        // If the left or 'A' key is released, stop moving the paddle to the left.
         if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
             gamePanel.getPaddle().setPaddleMovingLeft(false);
-        } else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+        }
+        // If the right or 'D' key is released, stop moving the paddle to the right.
+        else if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
             gamePanel.getPaddle().setPaddleMovingRight(false);
         }
     }
