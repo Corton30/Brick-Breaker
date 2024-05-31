@@ -15,11 +15,13 @@ public class GamePanel extends JPanel {
     private static final int INITIAL_LIVES = 3;
     private Paddle paddle;
     private Ball ball;
-    private MapGenerator mapGenerator;
+
     private int currentLevel;
     private List<Brick> bricks;
     private int lives = INITIAL_LIVES;
     private Collision collision;
+    private MapGenerator mapGenerator;
+    private GameRenderer gameRenderer;
 
 
     public Paddle getPaddle() {
@@ -27,6 +29,10 @@ public class GamePanel extends JPanel {
     }
     public Ball getBall() {
         return ball;
+    }
+
+    public int getLives() {
+        return lives;
     }
     public void resetBall() {
         ball.resetBall();
@@ -68,6 +74,8 @@ public class GamePanel extends JPanel {
         GameKeyAdapter gameKeyAdapter = new GameKeyAdapter(this);
         addKeyListener(gameKeyAdapter);
 
+        gameRenderer = new GameRenderer(this);
+
         Timer timer = new Timer(5, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,7 +100,7 @@ public class GamePanel extends JPanel {
         resetBall();
 
         // Reset the lives
-        lives = 3;
+        lives = INITIAL_LIVES;
 
         // Regenerate the bricks for the current level
         bricks = mapGenerator.generateMap(currentLevel);
@@ -108,41 +116,7 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println(getWidth());
-        if (lives > 0) {
-            if (!allBricksHit()) {
-                paddle.draw(g);
-                ball.draw(g);
-                for (Brick brick : bricks) {
-                    brick.draw(g);
-                }
-                // Display lives
-                g.setFont(new Font("Arial", Font.BOLD, 20));
-                g.drawString("Lives: " + lives, 10, 50);
-            } else {
-                paddle.draw(g);
-                ball.draw(g);
-                for (Brick brick : bricks) {
-                    brick.draw(g);
-                }
-                // Display winning screen
-                g.setColor(Color.RED);
-                g.setFont(new Font("serif",Font.BOLD, 30));
-                g.drawString("You Won", getWidth() / 2 - 100, getHeight() / 2);
-                // Display restart
-                g.setColor(Color.RED);
-                g.setFont(new Font("serif",Font.BOLD, 20));
-                g.drawString("Press (Enter) to Restart", (getWidth() / 2 - 100)-30, (getHeight() / 2)+50);
-            }
-        } else {
+        gameRenderer.render(g);
 
-            // Display losing screen
-            g.setFont(new Font("Arial", Font.BOLD, 50));
-            g.drawString("Game Over", getWidth() / 2 - 100, getHeight() / 2);
-            // Display restart
-            g.setColor(Color.RED);
-            g.setFont(new Font("serif",Font.BOLD, 20));
-            g.drawString("Press (Enter) to Restart", (getWidth() / 2 - 100)+40, (getHeight() / 2)+50);
-        }
     }
 }
