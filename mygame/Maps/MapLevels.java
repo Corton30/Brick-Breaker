@@ -9,8 +9,6 @@ import java.util.Random;
 
 public class MapLevels {
     private Random random = new Random();
-    List<Brick> bricks = new ArrayList<>();
-
 
     public List<Brick> levelOne() {
         List<Brick> bricks = new ArrayList<>();

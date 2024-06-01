@@ -1,5 +1,6 @@
 package mygame.logic;
 
+import mygame.GUI.SoundEffect;
 import mygame.GamePanel;
 import mygame.props.Ball;
 import mygame.props.Brick;
@@ -92,6 +93,11 @@ public class Collision {
             Brick brick = iterator.next();
             if (!brick.isAlreadyHit() && brick.isHit(ball)) {
                 ball.reverseYDirection();
+//                SoundEffect SoundEffect = new SoundEffect();
+//                SoundEffect.playSound("mygame/resources/BallBounce.wav");
+                SoundEffect soundEffect = new SoundEffect("mygame/resources/BallBounce.wav");
+                soundEffect.play();
+                //                SoundEffect.checkFileExists("mygame/resources/BallBounce.wav");
                 iterator.remove();
             }
         }
