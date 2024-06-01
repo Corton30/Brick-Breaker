@@ -171,7 +171,6 @@ public class MapLevels {
 
             return bricks;
     }
-
     public List<Brick> levelNine() {
         List<Brick> bricks = new ArrayList<>();
         Color brickColor = Color.GREEN;
@@ -204,7 +203,5 @@ public class MapLevels {
 
         return bricks;
     }
-
-
 }
 

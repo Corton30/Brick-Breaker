@@ -51,7 +51,7 @@ public class GameRenderer {
                 // Display restart
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("serif",Font.BOLD, 20));
-                g.drawString("Press (Enter) to Restart", 645-30, 320+50);
+                g.drawString("Press (Enter) to go to the Next level", 645-60, 320+50);
                 // Set GameState to GAME_WON
                 gamePanel.setGameState(GameState.GAME_WON);
             }
