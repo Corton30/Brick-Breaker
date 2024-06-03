@@ -93,11 +93,10 @@ public class Collision {
             Brick brick = iterator.next();
             if (!brick.isAlreadyHit() && brick.isHit(ball)) {
                 ball.reverseYDirection();
-//                SoundEffect SoundEffect = new SoundEffect();
-//                SoundEffect.playSound("mygame/resources/BallBounce.wav");
-                SoundEffect soundEffect = new SoundEffect("mygame/resources/BallBounce.wav");
-                soundEffect.play();
-                //                SoundEffect.checkFileExists("mygame/resources/BallBounce.wav");
+                new Thread(() -> {
+                    SoundEffect soundEffect = new SoundEffect("mygame/resources/BallBounce.wav");
+                    soundEffect.play();
+                }).start();
                 iterator.remove();
             }
         }
