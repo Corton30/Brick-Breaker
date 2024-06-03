@@ -1,6 +1,7 @@
 package mygame;
 
 import mygame.GUI.GameKeyAdapter;
+import mygame.GUI.SoundEffect;
 import mygame.GUI.GameRenderer;
 import mygame.Maps.MapGenerator;
 import mygame.extra.GameState;
@@ -21,19 +22,19 @@ import java.util.List;
 
 public class GamePanel extends JPanel {
 
-    private GameState gameState = GameState.RUNNING;
-
     private static final int INITIAL_LIVES = 3;
+    private int lives = INITIAL_LIVES;
+    private int currentLevel=1;
+    private int mouseX = 0;
+    private int mouseY = 0;
     private Paddle paddle;
     private Ball ball;
-    private int currentLevel=1;
     private List<Brick> bricks;
-    private int lives = INITIAL_LIVES;
+    private GameState gameState;
     private Collision collision;
     private MapGenerator mapGenerator;
     private GameRenderer gameRenderer;
-    private int mouseX = 0;
-    private int mouseY = 0;
+    private SoundEffect soundEffect;
     private LevelHandler levelHandler;
 
 
@@ -80,8 +81,13 @@ public class GamePanel extends JPanel {
     public int getMouseY() {
         return mouseY;
     }
+    public void toggleSound() {
+        soundEffect.toggleMute();
+    }
 
     public GamePanel() {
+        // Set the game state to RUNNING
+        this.gameState = GameState.RUNNING;
         // Initialize the paddle
         this.paddle = new Paddle(650, 700, 154, 15,Color.BLACK);
         // Initialize the ball

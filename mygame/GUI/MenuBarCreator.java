@@ -12,7 +12,6 @@ public class MenuBarCreator {
 
         // Create a menu for levels
         JMenu levelMenu = new JMenu("Levels");
-
         // Add menu items for each level
         for (int i = 1; i <= gamePanel.getLevelHandler().getMaxLevel(); i++) {
             JMenuItem levelItem = new JMenuItem("Level " + i);
@@ -24,9 +23,29 @@ public class MenuBarCreator {
             levelMenu.add(levelItem);
         }
 
+        // Create a menu for settings
+        JMenu settingsMenu = new JMenu("Settings");
+        // Create a checkbox menu item for mute sound
+        JCheckBoxMenuItem muteItem = new JCheckBoxMenuItem("Mute Sound");
+        muteItem.addActionListener(e -> {
+            // Toggle sound here
+            // You might need to add a method in your gamePanel or sound effect class to mute/unmute the sound
+             gamePanel.toggleSound();
+        });
+
+        // Add the mute item to the settings menu
+        settingsMenu.add(muteItem);
+
+
+
+
+
         // Add the levels menu to the menu bar
         menuBar.add(levelMenu);
+        menuBar.add(settingsMenu);
 
         return menuBar;
     }
 }
+
+

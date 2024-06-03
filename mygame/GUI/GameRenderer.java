@@ -35,7 +35,12 @@ public class GameRenderer {
         g.drawString("Mouse X: " + gamePanel.getMouseX() + ", Mouse Y: " + gamePanel.getMouseY(), 10, 15);
 
         // Check the game state
-        if (gamePanel.getGameState()!= GameState.GAME_OVER) {
+        if (gamePanel.getGameState() == GameState.PAUSED) {
+            // Display paused screen
+            g.setColor(Color.BLACK);
+            g.setFont(new Font("serif", Font.BOLD, 60));
+            g.drawString("Game Paused...", 540, 320);
+        } else if (gamePanel.getGameState() != GameState.GAME_OVER) {
             // Draw game objects
             drawGameObjects(g);
             if (!gamePanel.allBricksHit()) {
