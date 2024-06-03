@@ -1,6 +1,7 @@
 package mygame.GUI;
 
 import mygame.GamePanel;
+import mygame.extra.GameState;
 
 import javax.swing.*;
 
@@ -19,7 +20,7 @@ public class MenuBarCreator {
             levelItem.addActionListener(e -> {
                 if (gamePanel.getGameState() == gamePanel.getGameState().GAME_WON ||
                     gamePanel.getGameState() == gamePanel.getGameState().GAME_OVER ||
-                        gamePanel.getGameState() == gamePanel.getGameState().PAUSED) {
+                    gamePanel.getGameState() == gamePanel.getGameState().PAUSED) {
 
                     gamePanel.getLevelHandler().setCurrentLevel(level);
                     gamePanel.getLevelHandler().loadLevel();

@@ -2,6 +2,7 @@ package mygame.logic;
 
 import mygame.GamePanel;
 import mygame.Maps.MapGenerator;
+import mygame.extra.GameState;
 import mygame.props.Brick;
 
 import java.util.List;
@@ -46,6 +47,7 @@ public class LevelHandler {
         gamePanel.setBricks(bricks);
         gamePanel.resetPaddle();
         gamePanel.resetBall();
+        gamePanel.setGameState(GameState.RUNNING);
     }
 
     public void setCurrentLevel(int level) {
