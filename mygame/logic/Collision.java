@@ -13,6 +13,8 @@ import java.awt.Rectangle;
 public class Collision {
     private GamePanel gamePanel;
 
+
+
     public Collision(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
@@ -94,8 +96,8 @@ public class Collision {
             if (!brick.isAlreadyHit() && brick.isHit(ball)) {
                 ball.reverseYDirection();
                 new Thread(() -> {
-                    SoundEffect soundEffect = new SoundEffect("mygame/resources/BallBounce.wav");
-                    soundEffect.play();
+//                    this.soundEffect = new SoundEffect("mygame/resources/BallBounce.wav");
+                    gamePanel.getSoundEffect().play();
                 }).start();
                 iterator.remove();
             }

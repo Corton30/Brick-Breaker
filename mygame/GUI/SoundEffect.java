@@ -23,6 +23,9 @@ public class SoundEffect {
 
     public void play() {
         if (!isMuted) {
+            if (clip.getMicrosecondLength() == clip.getMicrosecondPosition()) {
+                clip.setMicrosecondPosition(0); // Rewind to the start
+            }
             clip.start();
         }
     }
@@ -33,5 +36,10 @@ public class SoundEffect {
 
     public void toggleMute() {
         isMuted = !isMuted;
+        if (isMuted) {
+            clip.stop(); // Optionally stop the clip when muted
+        } else {
+            play(); // Optionally auto-play after unmuting
+        }
     }
 }

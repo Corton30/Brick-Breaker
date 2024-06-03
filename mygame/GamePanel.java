@@ -42,6 +42,9 @@ public class GamePanel extends JPanel {
     public Paddle getPaddle() {
         return paddle;
     }
+    public SoundEffect getSoundEffect() {
+        return soundEffect;
+    }
     public GameState getGameState() {
         return gameState;
     }
@@ -88,6 +91,8 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         // Set the game state to RUNNING
         this.gameState = GameState.RUNNING;
+        // Initialize the soundEffect object
+        this.soundEffect = new SoundEffect("mygame/resources/BallBounce.wav");
         // Initialize the paddle
         this.paddle = new Paddle(650, 700, 154, 15,Color.BLACK);
         // Initialize the ball

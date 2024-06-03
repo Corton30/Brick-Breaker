@@ -17,8 +17,17 @@ public class MenuBarCreator {
             JMenuItem levelItem = new JMenuItem("Level " + i);
             int level = i;
             levelItem.addActionListener(e -> {
-                gamePanel.getLevelHandler().setCurrentLevel(level);
-                gamePanel.getLevelHandler().loadLevel();
+                if (gamePanel.getGameState() == gamePanel.getGameState().GAME_WON ||
+                    gamePanel.getGameState() == gamePanel.getGameState().GAME_OVER ||
+                        gamePanel.getGameState() == gamePanel.getGameState().PAUSED) {
+
+                    gamePanel.getLevelHandler().setCurrentLevel(level);
+                    gamePanel.getLevelHandler().loadLevel();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cannot change levels while the game is running!",
+                            "Game Running", JOptionPane.ERROR_MESSAGE);
+                }
+
             });
             levelMenu.add(levelItem);
         }
@@ -26,7 +35,7 @@ public class MenuBarCreator {
         // Create a menu for settings
         JMenu settingsMenu = new JMenu("Settings");
         // Create a checkbox menu item for mute sound
-        JCheckBoxMenuItem muteItem = new JCheckBoxMenuItem("Mute Sound");
+        JCheckBoxMenuItem muteItem = new JCheckBoxMenuItem("  Mute Sound");
         muteItem.addActionListener(e -> {
             // Toggle sound here
             // You might need to add a method in your gamePanel or sound effect class to mute/unmute the sound
