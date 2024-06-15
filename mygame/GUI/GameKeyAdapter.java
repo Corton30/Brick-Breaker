@@ -77,6 +77,9 @@ public class GameKeyAdapter extends KeyAdapter {
                 gamePanel.setGameState(GameState.RUNNING);
             }
         }
+        else if (key == KeyEvent.VK_S) {
+                gamePanel.getBall().increaseSpeed(2);
+        }
         // Repaint the game panel to reflect the changes made by the key press.
         gamePanel.repaint();
     }
