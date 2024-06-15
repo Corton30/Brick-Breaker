@@ -77,4 +77,8 @@ public class Ball {
         this.xDirection = 0;
         this.yDirection = 1;
     }
+    public void increaseSpeed(double factor) {
+        this.xDirection *= factor;
+        this.yDirection *= factor;
+    }
 }

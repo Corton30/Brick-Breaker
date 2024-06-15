@@ -3,6 +3,7 @@ package mygame.GUI;
 import mygame.GamePanel;
 import mygame.extra.GameState;
 
+import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -47,14 +48,19 @@ public class GameKeyAdapter extends KeyAdapter {
             gamePanel.resetPaddle();
             gamePanel.resetBall();
         }
-        // If a number key between 1 and 5 is pressed, change the level to the number pressed,
+        // If a number key between 1 and 9 is pressed, change the level to the number pressed,
         // generate a new map for that level, and reset the paddle and the ball.
         if (key >= KeyEvent.VK_1 && key <= KeyEvent.VK_9) {
             int level = key - KeyEvent.VK_0;
-            if (level <= gamePanel.getLevelHandler().getMaxLevel()) {
-                gamePanel.getLevelHandler().setCurrentLevel(level);
-                gamePanel.getLevelHandler().loadLevel();
-            }
+            if (level <= gamePanel.getLevelHandler().getMaxLevel() &&
+                gamePanel.getGameState() != gamePanel.getGameState().RUNNING) {
+                    gamePanel.getLevelHandler().setCurrentLevel(level);
+                    gamePanel.getLevelHandler().loadLevel();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cannot change levels while the game is running!\n" +
+                                    "Please press (P) to pause and then change levels",
+                            "Game Running", JOptionPane.ERROR_MESSAGE);
+                }
         }
         // If the 'Enter' key is pressed, reset the game
         else if (key == KeyEvent.VK_ENTER) {

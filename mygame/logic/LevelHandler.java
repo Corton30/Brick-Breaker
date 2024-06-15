@@ -51,6 +51,6 @@ public class LevelHandler {
     }
 
     public void setCurrentLevel(int level) {
-        currentLevel = level;
+            currentLevel = level;
     }
 }
